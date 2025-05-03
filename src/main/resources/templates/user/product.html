@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sản phẩm</title>
+<meta name="description"
+	content="Sản phẩm CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+<meta name="keywords"
+	content="Sản phẩm CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+	rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link th:href="@{/css/index.css}" rel="stylesheet">
+<link rel="stylesheet"
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css}">
+<link th:href="@{/css/catergory.css}" rel="stylesheet">
+<link th:href="@{/css/footer.css}" rel="stylesheet">
+<link th:href="@{/css/product.css}" rel="stylesheet">
+<style>
+/* Style for Category Column */
+/* Style for Category Column */
+.category-column {
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 8px;
+	border: 1px solid #ddd;
+}
+/* Style for loading icon */
+.dimmed-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3); /* Black with 30% opacity */
+	z-index: 998; /* Slightly lower than the loading icon */
+}
+
+/* Style for loading icon */
+.loading-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 24px;
+	color: #007bff;
+	display: none; /* Initially hidden */
+	opacity: 0.8; /* Make it more visible */
+	z-index: 999; /* Ensure it's above the overlay */
+}
+
+.no-products {
+	text-align: center;
+	padding: 50px;
+}
+
+.no-products-img {
+	max-width: 150px; /* Adjust the size as necessary */
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.no-products p {
+	font-size: 18px;
+	color: #2b3991; /* You can adjust the color as needed */
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.color {
+	color: #2b3991;
+}
+
+.header-search {
+	bottom: 0;
+	background: #0046be;
+	padding: 30px;
+}
+
+.header-search {
+	margin-top: 6rem;
+	background: #0046be;
+	padding: 30px;
+}
+
+.category-checkbox label {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.category-checkbox input {
+	margin-right: 10px;
+}
+
+/* Remove padding on hover, just change background color */
+.category-checkbox label:hover {
+	background-color: #f1f1f1; /* Change background on hover */
+	border-radius: 4px;
+}
+
+/* Product Card Styling */
+.product-card {
+	padding: 15px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	text-align: center;
+	font-size: 14px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+}
+
+.product-card:hover {
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	transform: scale(1.05);
+}
+
+.product-card img {
+	width: 100%;
+	height: auto;
+	border-radius: 8px;
+}
+
+.product-card h5 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.product-card p {
+	font-size: 16px;
+	color: #007bff;
+}
+
+.sea-blue-icon {
+	color: #0077b6; /* Icon color matching sea blue */
+}
+
+.mt-6 {
+	margin-top: 6rem !important;
+}
+
+@media ( max-width : 576px) {
+	.w-25 {
+		width: 100% !important;
+	}
+}
+
+/* Apply to medium screens (greater than 576px and less than 768px) */
+@media ( min-width : 576px) and (max-width: 768px) {
+	.w-25 {
+		width: 100% !important;
+	}
+}
+</style>
+</head>
+<body>
+	<th:block th:replace="~{fragments/header :: header}"></th:block>
+
+	<div class="content">
+		<div class="container-fuild mt-6 mb-2">
+			<div class="search-header header-search ">
+				<div class="container-fluid d-flex justify-content-end">
+					<div class="input-group w-25 w-sm-100 w-md-100">
+						<input type="text" class="form-control" id="searchProduct"
+							placeholder="Tìm kiếm sản phẩm..."
+							aria-label="Search for products" aria-describedby="searchButton">
+						<button class="btn btn-primary" id="searchButton" type="button">
+							<i class="fas fa-search"></i> Tìm Kiếm
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="container mt-2 mb-5">
+
+				<div class="row">
+					<!-- Left Column for Categories -->
+					<div class="col-md-3 category-column ">
+						<h6 class="mb-4 sea-blue-icon">
+							<i class="fas fa-list me-2 sea-blue-icon"></i> Danh Mục
+						</h6>
+						<div class="category-checkbox">
+
+							<div th:each="parentCategory : ${parentCategories}">
+								<!-- Checkbox for Parent Category -->
+								<div class="category-item w-100">
+									<label> <input type="checkbox"
+										class="category-checkbox-input"
+										th:id="'parent-' + ${parentCategory.id}"> <span
+										class="color" th:text="${parentCategory.name}"></span>
+									</label>
+								</div>
+
+								<!-- Child Categories -->
+								<div
+									th:if="${childCategoriesMap[parentCategory.id] != null and !#lists.isEmpty(childCategoriesMap[parentCategory.id])}">
+									<div
+										th:each="childCategory : ${childCategoriesMap[parentCategory.id]}"
+										class="category-item w-100">
+										<label> <input type="checkbox"
+											class="category-checkbox-input"
+											th:id="'child-' + ${childCategory.id}"> <span
+											class="color" th:text="${childCategory.name}"></span> (<span
+											class="color" th:text="${childCategory.productCount}"></span>)
+										</label>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+
+					<!-- Right Column for Products -->
+					<div class="col-md-9">
+						<div class="row  " id="product-container"></div>
+
+						<nav aria-label="Page navigation example">
+							<ul class="pagination" id="pagination-container">
+								<!-- Pagination buttons will be dynamically injected here -->
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="loading-icon" class="loading-icon">
+		<i class="fas fa-spinner fa-spin"></i> Đang tìm kiếm...
+	</div>
+
+	<div class="floating-contact">
+		<!-- Zalo -->
+		<div class="chat-toggle contact-icon" onclick="toggleChatBox()">
+			<i class="fas fa-comment-dots"></i>
+		</div>
+
+		<!-- Facebook -->
+		<a href="https://www.facebook.com/profile.php?id=61553924450827" target="_blank"
+			class="contact-icon"> <i class="fab fa-facebook-f"></i>
+		</a>
+		<!-- TikTok -->
+		<a href="https://www.tiktok.com/@uss.pharmaco" target="_blank"
+			class="contact-icon"> <i class="fab fa-tiktok"></i>
+		</a>
+		<!-- YouTube -->
+		<a href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
+			target="_blank" class="contact-icon"> <i class="fab fa-youtube"></i>
+		</a>
+
+	</div>
+	<th:block th:replace="~{fragments/footer-user :: footer-user}"></th:block>
+
+	<div id="miniChatBox" class="chat-box">
+		<div class="chat-header">
+			<strong>Hỗ trợ trực tuyến</strong> <span onclick="toggleChatBox()"
+				class="chat-close">&times;</span>
+
+		</div>
+		<div class="chat-body" id="chatBody">
+			<ul id="chatList">
+				<!-- List of predefined questions -->
+				<li class="chat-question" data-question="help" onclick="showAnswer(this)">Xin chào! Bạn cần hỗ trợ gì?</li>
+<li class="chat-question" data-question="contact" onclick="showAnswer(this)">Liên hệ với chúng tôi</li>
+				<li th:each="msg : ${chatMessages}" th:text="${msg.content}"
+					th:class="${msg.sender.username} == ${username} ? 'chat-message me' : 'chat-message user'">
+				</li>
+				</li>
+			</ul>
+		</div>
+		<div class="chat-input">
+			<!-- Check if the user is authenticated -->
+			<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+				<input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+				<button onclick="sendMessage()">Gửi</button>
+			</div>
+
+			<!-- If not authenticated, show the login modal -->
+			<div sec:authorize="!isAuthenticated()">
+				<input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+				<button onclick="showLoginModal()">Gửi</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="loginModal" tabindex="-1"
+		aria-labelledby="loginModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginModalLabel">Vui lòng đăng
+						nhập để chat</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Để gửi tin nhắn, bạn cần đăng nhập
+					trước.</div>
+				<div class="modal-footer">
+
+					<a href="/login" class="btn btn-primary">Đăng nhập</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.2/dist/sockjs.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+	<script>
+let currentPage = 0;  // Default to first page
+const productsPerPage = 12;  // Products per page
+const checkboxes = document.querySelectorAll('.category-checkbox-input');
+const searchInput = document.getElementById('searchProduct');  // Get the search input element
+let searchQuery = ''; // Declare searchQuery globally
+let searchTimeout; // Debounce timeout
+
+// Show loading icon and dim the right column
+function showLoadingIcon() {
+  const loadingIcon = document.getElementById('loading-icon');
+  const rightColumn = document.querySelector('.col-md-9');
+  
+  if (loadingIcon) {
+    loadingIcon.style.display = 'block';  // Show the loading icon
+  }
+
+  if (rightColumn) {
+    const overlay = document.createElement('div');
+    overlay.classList.add('dimmed-overlay');
+    rightColumn.appendChild(overlay); // Add dimmed overlay to the right column
+  }
+}
+
+// Hide loading icon and remove the dimming overlay
+function hideLoadingIcon() {
+  const loadingIcon = document.getElementById('loading-icon');
+  const rightColumn = document.querySelector('.col-md-9');
+  
+  if (loadingIcon) {
+    setTimeout(() => {
+      loadingIcon.style.display = 'none';  // Hide the loading icon after 2 seconds
+    }, 2000);
+  }
+
+  if (rightColumn) {
+    const overlay = rightColumn.querySelector('.dimmed-overlay');
+    if (overlay) {
+      overlay.remove(); // Remove the dimmed overlay
+    }
+  }
+}
+
+// Debounce function for search input
+searchInput.addEventListener('input', function() {
+  clearTimeout(searchTimeout);  // Clear previous timeout
+  searchTimeout = setTimeout(function() {
+    searchQuery = searchInput.value.trim();  // Update searchQuery whenever the input changes
+    showLoadingIcon();  // Show loading icon before fetching products
+    loadSelectedCategory();  // Trigger product fetch when search term changes
+  }, 500);  // Trigger after 500ms of idle time
+});
+
+// Hàm để fetch sản phẩm dựa trên từ khóa tìm kiếm và category đã chọn
+function fetchProducts(url) {
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const productContainer = document.querySelector('#product-container');
+      const paginationContainer = document.querySelector('#pagination-container');
+      
+      if (!productContainer || !paginationContainer) {
+        console.error("Product container or pagination container not found.");
+        return;
+      }
+
+      // Xóa các sản phẩm cũ và các điều khiển phân trang
+      productContainer.innerHTML = '';  
+      paginationContainer.innerHTML = '';  
+
+      // If no products are found, show a message
+      if (data.content.length === 0) {
+        productContainer.innerHTML = ` 
+          <div class="no-products">
+            <img src="https://x-group.com.vn/assets/images/no-cart.png" alt="No products" class="no-products-img">
+            <p>Chưa có sản phẩm nào</p>
+          </div>
+        `;
+      } else {
+        // Thêm các sản phẩm mới vào
+        data.content.forEach(product => {
+          const productCard = `
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-2">
+              <div class="product-card">
+                <img src="/loadImage?imageName=${product.imageUrl}" alt="${product.name}" class="img-fluid mt-2" style="max-width: 150px; height: auto;">
+                <a class="product-name" href="/chi-tiet-san-pham/${product.id}" class="product-name">${product.name}</a>
+              </div>
+            </div>
+          `;
+          productContainer.innerHTML += productCard;
+        });
+
+        // Thêm các nút phân trang
+        for (let i = 0; i < data.totalPages; i++) {
+          const pageItem = `
+            <li class="page-item ${i === currentPage ? 'active' : ''}">
+              <a class="page-link" href="#" onclick="changePage(${i})">${i + 1}</a>
+            </li>
+          `;
+          paginationContainer.innerHTML += pageItem;
+        }
+      }
+
+      hideLoadingIcon();  // Hide loading icon after fetching is complete
+    })
+    .catch(error => {
+      console.error('Error fetching products:', error);
+      hideLoadingIcon();  // Hide loading icon in case of error
+    });
+}
+
+// Thay đổi trang khi người dùng nhấn vào các nút phân trang
+function changePage(page) {
+  currentPage = page;
+  loadSelectedCategory();  // Fetch products based on the selected category and search query
+}
+
+// Load selected category from sessionStorage and trigger product fetch
+function loadSelectedCategory() {
+  const selectedCategoryId = sessionStorage.getItem('selectedCategoryId');
+  searchQuery = searchInput.value.trim();  // Lấy từ khóa tìm kiếm
+
+  let url = '';
+  if (selectedCategoryId) {
+    const [categoryType, categoryId] = selectedCategoryId.split('-');
+
+    // Construct the appropriate URL based on the selected category
+    if (categoryType === 'parent') {
+      url = `/api/products/by-category?parentCategoryId=${categoryId}&search=${searchQuery}&page=${currentPage}&size=${productsPerPage}`;
+    } else if (categoryType === 'child') {
+      url = `/api/products/by-category?categoryId=${categoryId}&search=${searchQuery}&page=${currentPage}&size=${productsPerPage}`;
+    }
+  } else {
+    // If no category is selected, just use searchQuery
+    url = `/api/products/by-category?search=${searchQuery}&page=${currentPage}&size=${productsPerPage}`;
+  }
+
+  fetchProducts(url);
+}
+
+// Lắng nghe sự kiện thay đổi của category checkbox
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', function(event) {
+    event.preventDefault(); // Prevent any unintended behavior
+
+    // Uncheck all other checkboxes
+    checkboxes.forEach((otherCheckbox) => {
+      if (otherCheckbox !== checkbox) {
+        otherCheckbox.checked = false; // Uncheck the others
+      }
+    });
+
+    const categoryId = checkbox.id.split('-')[1];
+    const categoryType = checkbox.id.split('-')[0]; // 'parent' or 'child'
+
+    // Store selected category in sessionStorage
+    sessionStorage.setItem('selectedCategoryId', checkbox.id); // Save full id to sessionStorage
+
+    let url = '';
+    if (categoryType === 'parent') {
+      url = `/api/products/by-category?parentCategoryId=${categoryId}&search=${searchQuery}&page=${currentPage}&size=${productsPerPage}`;
+    } else if (categoryType === 'child') {
+      url = `/api/products/by-category?categoryId=${categoryId}&search=${searchQuery}&page=${currentPage}&size=${productsPerPage}`;
+    }
+
+    // Fetch products based on the selected category
+    fetchProducts(url);
+  });
+});
+
+// Load the selected category on page load
+window.addEventListener('load', function() {
+  loadSelectedCategory();
+});
+
+</script>
+
+
+
+	<script>
+	let stompClient = null;
+	let connected = false;  // Track if the WebSocket is connected
+
+	// Connect to WebSocket using SockJS
+	// Connect to WebSocket using SockJS
+function connectWebSocket() {
+    const socket = new SockJS('/ws');  // This should match your server-side "/ws" endpoint
+    stompClient = StompJs.Stomp.over(socket); 
+    stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+        connected = true;  // Set the connected flag to true after a successful connection
+        subscribeToMessages();  // Subscribe to receive messages
+    }, function (error) {
+        console.error('Error connecting to WebSocket: ', error);
+        connected = false;  // Set connected flag to false if connection fails
+    });
+}
+
+
+	// Send a message using WebSocket
+	function sendMessage() {
+    const messageInput = document.getElementById("chatMessage");
+    const messageContent = messageInput.value.trim();
+    const senderUsername = document.getElementById("loggedInUser").textContent.trim();
+    const receiverUsername = '0928666622'; // hoặc biến receiver nếu là dynamic
+
+    if (!connected || !messageContent) return;
+
+    const chatMessage = {
+        senderUsername: senderUsername,
+        receiverUsername: receiverUsername,
+        content: messageContent
+    };
+
+    // ❌ KHÔNG append message tại đây nữa
+    stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
+    messageInput.value = "";
+}
+
+	function subscribeToMessages() {
+	    const receiverUsername = '0928666622'; // hoặc dùng biến nếu động
+
+	    stompClient.subscribe(`/topic/messages/${receiverUsername}`, function (messageOutput) {
+	        const message = JSON.parse(messageOutput.body);
+	        const sender = document.getElementById("loggedInUser").textContent.trim();
+	        const chatList = document.getElementById("chatList");
+
+	        // Tạo thẻ <li> đúng theo format giống Thymeleaf
+	        const li = document.createElement("li");
+	        li.textContent = message.content;
+
+	        // Gán class theo người gửi
+	        if (message.senderUsername === sender) {
+	            li.className = "chat-message me";
+	        } else {
+	            li.className = "chat-message user";
+	        }
+
+	        chatList.appendChild(li);
+	        chatList.scrollTop = chatList.scrollHeight;
+	    });
+	}
+
+	// Initialize WebSocket connection when the page loads
+	window.onload = function() {
+	    connectWebSocket();
+	    subscribeToMessages();
+	
+	};
+
+	// Show login modal if user is not authenticated
+	function showLoginModal() {
+	    const myModal = new bootstrap.Modal(document.getElementById('loginModal'));
+	    myModal.show();
+	}
+
+	function toggleChatBox() {
+	    const chatBox = document.getElementById("miniChatBox");
+	    chatBox.style.display = chatBox.style.display === "none" || chatBox.style.display === "" ? "flex" : "none";
+	}
+
+	
+	
+	function showAnswer(element) {
+		   const type = element.getAttribute("data-question");
+		    let answerText = "";
+
+
+	    // Define answers to the questions
+	 switch (type) {
+        case "help":
+            answerText = "Chúng tôi cung cấp các dịch vụ hỗ trợ trực tuyến, vui lòng đăng nhập để nhắn tin trực tuyến.";
+            break;
+        case "contact":
+            answerText = "Bạn có thể liên hệ qua email usspharmaco3007@gmail.com hoặc gọi số hotline: 092 866 66 22";
+            break;
+        // thêm các loại khác ở đây...
+        default:
+            answerText = "Xin lỗi, chúng tôi không có câu trả lời cho câu hỏi này.";
+    }
+	    // Create the answer element
+	    const answer = document.createElement("div");
+	    answer.classList.add("chat-answer");
+	    answer.textContent = answerText;
+
+	    // Append the answer at the end of the chat body, not after the question
+	    const chatBody = document.getElementById("chatBody");
+	    chatBody.appendChild(answer);
+
+	    // Ensure the new answer is visible
+	    answer.style.display = "block";
+
+	    // Scroll the chat body to the bottom
+	    chatBody.scrollTop = chatBody.scrollHeight;
+	}
+
+	
+
+</script>
+</body>
+</html>

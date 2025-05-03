@@ -1,0 +1,48 @@
+.categories {
+    background-color: #f8f9fa; /* Light background color */
+    padding: 40px 0; /* Padding to give space around the content */
+    margin-top: 20px; /* Add space above the section */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Add a shadow for a raised effect */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.category-container {
+    display: flex;
+    justify-content: center; /* Center the items */
+    align-items: center;
+    gap: 20px; /* Add space between the items */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.category-item {
+    text-align: center;
+  
+}
+.w-100 {
+	  width: 100%; /* Set width to make items uniform */
+}
+
+.category-item img {
+    width: 80px; /* Set the image size */
+    height: 80px  !important; /* Set the image size */
+    margin-bottom: 10px; /* Add some space between image and text */
+    border: 2px solid #ddd; /* Border around the image */
+    border-radius: 50%; /* Make the image round */
+    object-fit: cover; /* Ensure the image covers the container without stretching */
+    transition: transform 0.3s ease-in-out;
+}
+
+.category-item img:hover {
+    transform: scale(1.05); /* Scale the image slightly on hover */
+}
+
+.category-item a {
+    text-decoration: none; /* Remove underline from links */
+    color: black; /* Set text color to black */
+}
+
+.category-item h5 {
+    font-size: 14px;
+    margin-top: 10px; /* Space between the image and the heading */
+    color: #333; /* Dark text color for the category name */
+}

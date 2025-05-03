@@ -1,0 +1,206 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class="layout-wide customizer-hide"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Đăng kí - USS PHARMA</title>
+
+   <meta name="description"
+	content="Đăng kí - USS PHARMA">
+<meta name="keywords"
+	content="Đăng kí - USS PHARMA">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+<!-- Add Toastify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<!-- Add Toastify JS -->
+<script src="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.js"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="../assets/vendor/fonts/iconify-icons.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- Core CSS -->
+    <!-- build:css assets/vendor/css/theme.css  -->
+
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- endbuild -->
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="../assets/vendor/css/pages/page-auth.css" />
+
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+<style type="text/css">
+ .app-brand-logo1 {
+  display: flex !important;          /* Use Flexbox for easy centering */
+  justify-content: center !important; /* Center horizontally */
+  align-items: center !important;    /* Center vertically */
+  height: 100% !important;           /* Ensure it takes full height of its parent */
+}
+.app-brand-text.demo {
+    color: cadetblue !important;
+    margin-left: -31px !important;
+    font-size: 1.75rem;
+    letter-spacing: -0.5px;
+}
+.app-brand-logo1 img {
+  display: block;        /* Makes the image a block-level element */
+       /* Keep aspect ratio */
+  max-height: 77px !important;      /* Limit height */
+}
+</style>
+    <script src="../assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Content -->
+
+    <div class="container-xxl">
+      <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+          <!-- Register Card -->
+          <div class="card px-sm-6 px-0">
+            <div class="card-body">
+              <!-- Logo -->
+              <div class="app-brand justify-content-center mb-6">
+                <a href="index.html" class="app-brand-link gap-2"> <span class="app-brand-logo1 ms-5 demo">
+      <span class="text-primary">
+        <img src="https://ctyduocphamquocteuss.com/wp-content/uploads/2025/03/logo-1024x576.png" alt="Logo">
+      </span>
+    </span>
+                  <span class="app-brand-text demo text-heading fw-bold">USS PHARMA</span>
+                </a>
+              </div>
+              <!-- /Logo -->
+             
+         
+
+             <form id="formAuthentication" class="mb-6" onsubmit="return registerUser(event)">
+             <div class="mb-6">
+                  <label for="username" class="form-label">Số điện thoại người dùng</label>
+                  <input type="number" class="form-control" id="username" name="username" placeholder="Enter your numberphone" required />
+                </div>
+    <div class="mb-6">
+        <label for="email" class="form-label">Email khách hàng</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus />
+    </div>
+    
+    <!-- New password field -->
+    <div class="mb-6">
+        <label for="password" class="form-label">Mật khẩu</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" />
+    </div>
+    <button type="submit" class="btn btn-primary d-grid w-100">Đăng kí</button>
+</form>
+              <p class="text-center">
+                <span>Bạn đã có tài khoản?</span>
+                <a href="/dang-nhap">
+                  <span>Đăng nhập</span>
+                </a>
+              </p>
+            </div>
+          </div>
+          <!-- Register Card -->
+        </div>
+      </div>
+    </div>
+
+    <!-- / Content -->
+
+    
+
+    <!-- Core JS -->
+
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+<!-- Toastify JS -->
+<script src="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.js"></script>
+<script>
+async function registerUser(event) {
+    event.preventDefault();
+
+    // Get data from form
+    const formData = new FormData(document.getElementById('formAuthentication'));
+    const data = {
+    		   username: formData.get('username'),
+    	email: formData.get('email'),
+       
+        password: formData.get('password')
+    };
+
+    // Send POST request to the registration API
+    const response = await fetch('/auth/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    // Check if the response is OK
+    if (response.ok) {
+        // Display success message
+        Toastify({
+            text: "Đăng ký thành công!",
+            duration: 3000, // Duration for Toast
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            close: true
+        }).showToast();
+    } else {
+        // Display error message if the response is not OK
+        Toastify({
+            text: "Đăng ký thất bại: " + result.message,
+            duration: 3000,
+            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+            close: true
+        }).showToast();
+    }
+}
+</script>
+    <!-- Place this tag before closing body tag for github widget button. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>

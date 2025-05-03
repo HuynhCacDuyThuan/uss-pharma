@@ -1,0 +1,690 @@
+/* Navbar trong suốt khi ở đầu trang */
+.navbar {
+	transition: all 0.3s ease-in-out;
+	background-color: transparent;
+	color: black;
+}
+
+/* Màu chữ menu khi ở đầu trang */
+.navbar .nav-link {
+	color: black;
+	transition: color 0.3s ease-in-out;
+}
+
+.chat-toggle {
+	background-color: #00aaff;
+	color: #fff;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	font-size: 22px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.chat-box {
+    position: fixed;
+    bottom: 2px;
+    right: 20px;
+    width: 280px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 10000;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #00aaff;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chat-question {
+    cursor: pointer;
+    padding: 8px;
+    background-color: #f1f1f1;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.chat-question:hover {
+    background-color: #e0e0e0;
+}
+.chat-answer {
+    display: none;  /* Hide by default */
+    background-color: #e9f7ff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 30px;
+    font-size: 13px;
+    color: #333;
+}
+
+.chat-body p {
+    display: none;
+}
+
+.chat-body {
+	max-height: 300px;
+	overflow-y: auto;
+	padding: 10px;
+	font-size: 14px;
+	color: #333;
+}
+
+.chat-input {
+	display: flex;
+	border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+	flex: 1;
+	padding: 8px;
+	border: none;
+	outline: none;
+}
+
+.chat-input button {
+	background-color: #00aaff;
+	border: none;
+	color: white;
+	padding: 0 15px;
+	cursor: pointer;
+}
+
+.chat-close {
+	cursor: pointer;
+	font-size: 20px;
+}
+
+
+/* Ensures the layout takes full height */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.floating-contact {
+            position: fixed;
+            bottom: 20px;
+            right: 20px; /* Align to the right */
+            display: flex;
+            flex-direction: column; /* Align icons vertically */
+            gap: 15px; /* Add space between icons */
+            z-index: 9999; /* Ensure it's on top */
+        }
+
+        /* Style for each contact icon */
+        .floating-contact .contact-icon {
+            background-color: #ff4d4d;
+            color: white;
+            border-radius: 50%;
+            font-size: 24px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px; /* Set width */
+            height: 50px; /* Set height */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-contact .contact-icon:hover {
+            transform: scale(1.1); /* Slightly increase size on hover */
+        }
+
+        /* Styling for the Zalo image icon */
+        .floating-contact .contact-icon img {
+            width: 30px;
+            height: 30px;
+        }
+/* Layout wrapper should take the full height */
+.layout-menu-fixed {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* The content section should expand to fill available space */
+.layout-container {
+  flex: 1;
+}
+
+/* Footer should stay at the bottom */
+.content-footer {
+  margin-top: auto; /* Pushes footer to the bottom */
+}
+
+nav.navbar.navbar-expand-lg.fixed-top {
+	background: rgba(255, 255, 255, 0.9);
+}
+/* Shipping Section */
+
+
+.color-text {
+	color: darkslateblue;
+}
+#bannerCarousel {
+    position: relative;
+}
+/* Banner Overlay */
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+    z-index: 1; /* Ensure the overlay sits above the background but below other content */
+}
+  .f1 {
+    margin-top: 20px !important;
+}
+  
+  .shipping-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Main Content */
+  .shipping-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 15px;
+  }
+  
+  /* Title */
+  .shipping-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+  }
+  
+  /* Shipping Items */
+  .shipping-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .shipping-item {
+    margin-bottom: 2rem;
+  }
+  
+  .item-box {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: left;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap; /* Cho phép nội dung trong item-box xuống dòng nếu cần */
+  }
+  
+  /* Icons */
+  .item-icon {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+  
+  .triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid white;
+  }
+  
+  .star {
+    background-image: url("https://img.icons8.com/ios-filled/50/ffffff/star.png");
+    background-size: cover;
+  }
+  
+  .circle {
+    background-color: white;
+    border-radius: 50%;
+  }
+  
+  .square {
+    background-color: white;
+  }
+  .chat-question{  list-style-type: none;
+}
+  .chat-message {
+    cursor: pointer;
+    padding: 8px;
+    background-color: #f1f1f1;
+    margin-bottom: 5px;
+    border-radius: 5px;
+   list-style-type: none;
+}
+
+.chat-message.me {
+    color: black;
+    background-color: #f1f1f1;
+    list-style-type: none;
+    width: 190px;
+}
+.chat-message.user {
+    background-color: #e9f7ff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 60px;
+    font-size: 13px;
+    color: #333;
+    width: 190px;
+    text-align: right;
+}
+  /* Item Title and Description */
+  .item-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  li.chat-question {
+    width: 190px;
+}
+ul {
+    margin-left: 0;
+    padding-left: 0; /* Cũng nên bỏ padding nếu muốn sát lề */
+}
+  .item-description {
+    font-size: 1rem;
+    color: #ccc;
+    white-space: normal; /* Cho phép văn bản xuống dòng tự nhiên */
+    overflow-wrap: break-word; /* Đảm bảo từ dài sẽ xuống dòng */
+    word-break: break-all; /* Ép xuống dòng nếu từ quá dài không có khoảng trắng */
+    line-height: 1.5; /* Tăng khoảng cách giữa các dòng để dễ đọc */
+    width: 100%; /* Đảm bảo thẻ p chiếm toàn bộ chiều rộng còn lại trong flexbox */
+  }
+  
+  /* Responsive Design */
+  
+  /* Tablet (màn hình từ 768px đến 991px) */
+  @media (max-width: 991px) {
+    .shipping-background {
+      min-height: 500px;
+    }
+  
+    .shipping-title {
+      font-size: 2rem;
+    }
+  
+    .item-box {
+      padding: 1rem;
+    }
+  
+    .item-title {
+      font-size: 1.3rem;
+    }
+  
+    .item-description {
+      font-size: 0.9rem;
+    }
+  
+    .item-icon {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .triangle {
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 30px solid white;
+    }
+  }
+  
+  /* Mobile (màn hình dưới 768px) */
+  @media (max-width: 767px) {
+    .shipping-background {
+      min-height: 400px;
+    }
+  
+    .shipping-title {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+  
+    .shipping-item {
+      margin-bottom: 1.5rem;
+    }
+  
+    .item-box {
+      padding: 0.8rem;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .item-title {
+      font-size: 1.2rem;
+    }
+  
+    .item-description {
+      font-size: 0.85rem;
+    }
+  
+    .item-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 0.5rem;
+    }
+  
+    .triangle {
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 25px solid white;
+    }
+  }
+  
+  /* Mobile nhỏ (dưới 576px) */
+  @media (max-width: 576px) {
+    .shipping-background {
+      min-height: 350px;
+    }
+  
+    .shipping-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .item-title {
+      font-size: 1rem;
+    }
+  
+    .item-description {
+      font-size: 0.8rem;
+    }
+  
+    .item-icon {
+      width: 50px;
+      height:50px;
+    }
+  
+    .triangle {
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 20px solid white;
+    }
+  }
+
+  
+.fixed-top {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1030;
+	background: rgba(255, 255, 255, 0.7);
+}
+/* Khi cuộn xuống, navbar đổi màu */
+.navbar.scrolled {
+	background-color: rgba(255, 255, 255, 0.95);
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Khi cuộn xuống, đổi màu chữ menu thành đen */
+.navbar.scrolled .nav-link {
+	color: black;
+}
+
+/* Đổi màu icon toggle */
+.navbar-toggler {
+	border-color: white;
+}
+
+.scrolled .navbar-toggler {
+	border-color: black;
+}
+/* Toast styling */
+.toast {
+  background-color: #28a745; /* Green for success */
+  color: #fff;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  font-size: 16px;
+  max-width: 300px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+ html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+
+
+footer .social-icons a {
+    color: #fff;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+footer .social-icons a:hover {
+    color: #ed1c24;
+}
+
+footer .footer-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .footer-links a:hover {
+    color: #ed1c24;
+    text-decoration: underline;
+}
+        .slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px;
+            background-color: #ffff;
+        }
+        .slider-content {
+            max-width: 50%;
+        }
+      .slider-image img {
+    width: 100%;   /* Makes the image take up the full width of its parent container */
+    height: auto;  /* Maintains the aspect ratio of the image */
+    object-fit: contain;  /* Ensures the image is contained within its container without distortion */
+}
+      .slider-header {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ed1c24;  /* Set the text color to #ed1c24 */
+}
+        .slider-text {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+.toast.show {
+  opacity: 1;
+  animation: fadeOut 3s forwards; /* Fade out after 3 seconds */
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.features {
+	padding: 60px 0;
+	background-color: #ffffff;
+}
+
+.features .title {
+	font-size: 28px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+
+.features .highlight {
+	color: #4CAF50; /* Màu xanh giống như hình */
+}
+
+.features .subtitle {
+	font-size: 22px;
+	color: #666;
+	margin-bottom: 40px;
+}
+
+.feature-item {
+	text-align: center;
+	padding: 20px;
+}
+
+.feature-item .icon {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background: #f9f9f9;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 15px;
+	border: 2px solid #e0e0e0;
+}
+
+.feature-item .icon img {
+	width: 50px;
+	height: 50px;
+}
+
+.feature-item h4 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.feature-item p {
+	font-size: 14px;
+	color: #666;
+}
+
+.cart-container, .user-container {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.cart-icon, .user-icon {
+	font-size: 22px;
+	color: #333;
+	text-decoration: none;
+	position: relative;
+}
+
+.cart-icon:hover, .user-icon:hover {
+	color: #007bff;
+}
+
+/* Badge số lượng giỏ hàng */
+.cart-icon {
+    display: inline-flex;
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 0.75rem !important;
+    padding: 0.2rem 0.5rem;
+}
+.c1{
+	with :300px !important;
+}
+
+.floating-contact {
+            position: fixed;
+            bottom: 20px;
+            right: 20px; /* Align to the right */
+            display: flex;
+            flex-direction: column; /* Align icons vertically */
+            gap: 15px; /* Add space between icons */
+            z-index: 9999; /* Ensure it's on top */
+        }
+
+        /* Style for each contact icon */
+        .floating-contact .contact-icon {
+            background-color: #ff4d4d;
+            color: white;
+            border-radius: 50%;
+            font-size: 24px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px; /* Set width */
+            height: 50px; /* Set height */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-contact .contact-icon:hover {
+            transform: scale(1.1); /* Slightly increase size on hover */
+        }
+
+        /* Styling for the Zalo image icon */
+        .floating-contact .contact-icon img {
+            width: 30px;
+            height: 30px;
+        }
+span.cart-count.badge.bg-danger {
+    /* border: 67px; */
+    border-radius: 50%;
+}
+.modal-content {
+	min-width: 450px; /* Đặt chiều cao tối thiểu */
+}
+
+.col-md-5 img {
+	height: 100%; /* Ảnh sẽ tự động bằng chiều cao form */
+	object-fit: cover; /* Cắt ảnh để giữ tỷ lệ đẹp */
+}
+
+.modal-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+/* Khoảng cách giữa cart và user */
+.user-container {
+	margin-left: 15px;
+}
+
+/*danh mu*/

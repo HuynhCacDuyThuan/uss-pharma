@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sản phẩm</title>
+<meta name="description"
+	content="Sản phẩm CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+<meta name="keywords"
+	content="Sản phẩm CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+	<div th:fragment="product" class="container my-4">
+		<!-- Tabs Header -->
+		<ul class="tabs-header d-flex">
+			<li class="tab-item active" data-type="suggest" data-category-id="1"
+				id="latest-products-tab">
+				<div class="Z4y0jo">
+					<span>Mới Nhất</span>
+				</div>
+			</li>
+			<li class="tab-item" data-type="new-today">
+				<div class="Z4y0jo">
+					<span>GỢI Ý HÔM NAY</span>
+				</div>
+			</li>
+
+
+		</ul>
+
+		<!-- Product Display -->
+		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4"
+			id="product-list">
+			<!-- Products will be dynamically added here -->
+		</div>
+
+		<div class="no-products text-center mt-4" style="display: none;">
+			<img src="https://x-group.com.vn/assets/images/no-cart.png"
+				alt="No products" class="no-products-img" style="max-width: 150px;">
+			<p class="mt-2">Chưa có sản phẩm nào</p>
+		</div>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

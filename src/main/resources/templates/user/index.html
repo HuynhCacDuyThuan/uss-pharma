@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+<meta name="description"
+	content="Trang chủ CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+<meta name="keywords"
+	content="Trang chủ CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+	rel="stylesheet">
+<link th:href="@{/css/index.css}" rel="stylesheet">
+<link th:href="@{/css/catergory.css}" rel="stylesheet">
+<link th:href="@{/css/footer.css}" rel="stylesheet">
+<link th:href="@{/css/product.css}" rel="stylesheet">
+<link rel="stylesheet"
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css}">
+<link rel="stylesheet"
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css}">
+<link rel="stylesheet"
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css}">
+<link th:href="@{/css/product.css}" rel="stylesheet">
+<style type="text/css">
+.subtitle {
+	font-weight: bold; /* Make the text bold */
+	color: #003087 !important;
+}
+ul#chatList {
+    margin-left: 0;
+    padding-left: 0;
+}
+.floating-contact {
+	position: fixed;
+	bottom: 20px;
+	right: 20px; /* Align to the right */
+	display: flex;
+	flex-direction: column; /* Align icons vertically */
+	gap: 15px; /* Add space between icons */
+	z-index: 9999; /* Ensure it's on top */
+}
+
+/* Style for each contact icon */
+.floating-contact .contact-icon {
+	background-color: #ff4d4d;
+	color: white;
+	border-radius: 50%;
+	font-size: 24px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px; /* Set width */
+	height: 50px; /* Set height */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow */
+	cursor: pointer;
+	transition: transform 0.3s ease;
+}
+
+.floating-contact .contact-icon:hover {
+	transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+/* Styling for the Zalo image icon */
+.floating-contact .contact-icon img {
+	width: 30px;
+	height: 30px;
+}
+/* Ensure the .row doesn't wrap */
+.row1 {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap; /* Prevent wrapping of items to the next line */
+}
+
+.feature-item {
+	background-color: #76c043; /* Green background */
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+	height: 250px; /* Set height for each item */
+	display: flex;
+	flex-direction: column;
+	justify-content: center; /* Vertically center the content */
+	margin-right: 15px; /* Space between items */
+}
+
+.feature-item .icon img {
+	width: 60px; /* Adjust icon size */
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.feature-item h4 {
+	font-weight: bold;
+	font-size: 18px;
+	color: #fff;
+	margin-bottom: 10px;
+}
+
+.feature-item p {
+	color: #fff;
+	font-size: 14px;
+	margin-bottom: 0;
+}
+
+/* Responsive Design for small screens */
+@media ( max-width : 768px) {
+	.feature-item {
+		margin-right: 0; /* Remove margin for small screens */
+		margin-bottom: 15px; /* Keep vertical spacing for small screens */
+	}
+	.category-item {
+		margin-bottom: 20px;
+	}
+}
+</style>
+</head>
+<body>
+
+	<!-- Gọi Header -->
+	<th:block th:replace="~{fragments/header :: header}"></th:block>
+
+	<div class="content">
+		<!-- Banner Slider -->
+		<div id="bannerCarousel" class="carousel slide"
+			data-bs-ride="carousel">
+			<div class="banner-overlay"></div>
+			<!-- Overlay for blur and opacity effect -->
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="/assets/img/uss-img.png" class="d-block w-100"
+						alt="Banner 1">
+				</div>
+				<div class="carousel-item">
+					<img
+						src="https://ctyduocphamquocteuss.com/wp-content/uploads/2025/03/logo-scaled.jpg"
+						class="d-block w-100" alt="Banner 2">
+				</div>
+				<div class="carousel-item">
+					<img src="/assets/img/uss-pharma.png" class="d-block w-100"
+						alt="Banner 3">
+				</div>
+			</div>
+
+			<!-- Nút điều hướng -->
+			<button class="carousel-control-prev" type="button"
+				data-bs-target="#bannerCarousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			</button>
+			<button class="carousel-control-next" type="button"
+				data-bs-target="#bannerCarousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			</button>
+		</div>
+
+		<section class="container">
+
+			<div class="slider-container">
+				<div class="slider-content">
+					<div class="slider-header">Công ty TNHH Dược phẩm Quốc tế USS
+					</div>
+					<div class="slider-text">
+						Với hơn 10 năm kinh nghiệm trong lĩnh vực phân phối Dược phẩm,
+						Thực phẩm dinh dưỡng Y tế cao cấp với xuất phát điểm là Hệ thống
+						Nhà thuốc Sài Gòn làm nền tảng hình thành nên USS PHARMA như hiện
+						nay. <br> <br> Ngành nghề kinh doanh: Mua bán thực phẩm
+						chức năng, yến sào và thực phẩm khác; Bán buôn dược phẩm và dụng
+						cụ y tế;
+					</div>
+				</div>
+				<div class="slider-image">
+					<img src="/assets/img/layouts/uss.png" />
+				</div>
+			</div>
+
+		</section>
+
+		<section class="features text-center">
+			<p class="subtitle">USS sự lựa chọn tin cậy cho người tiêu dùng</p>
+			<div class="container">
+				<div class="row1">
+					<div class="col-md-3 feature-item">
+						<div class="icon"></div>
+						<h4>CÔNG THỨC TỐI ƯU</h4>
+					</div>
+					<div class="col-md-3 feature-item">
+						<div class="icon"></div>
+						<h4>CÔNG NGHỆ HIỆN ĐẠI</h4>
+					</div>
+					<div class="col-md-3 feature-item">
+						<div class="icon"></div>
+						<h4>CHUẨN VỆ SINH AN TOÀN THỰC PHẨM</h4>
+					</div>
+					<div class="col-md-3 feature-item">
+						<div class="icon"></div>
+						<h4>SẢN XUẤT THEO TIÊU CHUẨN</h4>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+	</div>
+	<div class="floating-contact">
+		<!-- Zalo -->
+		<div class="chat-toggle contact-icon" onclick="toggleChatBox()">
+			<i class="fas fa-comment-dots"></i>
+		</div>
+		<!-- Facebook -->
+			<!-- Facebook -->
+		<a href="https://www.facebook.com/profile.php?id=61553924450827" target="_blank"
+			class="contact-icon"> <i class="fab fa-facebook-f"></i>
+		</a>
+		<!-- TikTok -->
+		<a href="https://www.tiktok.com/@uss.pharmaco" target="_blank"
+			class="contact-icon"> <i class="fab fa-tiktok"></i>
+		</a>
+		<!-- YouTube -->
+		<a href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
+			target="_blank" class="contact-icon"> <i class="fab fa-youtube"></i>
+		</a>
+
+
+	</div>
+	<th:block th:replace="~{fragments/category :: category }"></th:block>
+	<th:block th:replace="~{fragments/product :: product }"></th:block>
+	<th:block th:replace="~{fragments/footer-user :: footer-user}"></th:block>
+
+
+	<!-- Font Awesome Icons -->
+	<div id="miniChatBox" class="chat-box">
+		<div class="chat-header">
+			<strong>Hỗ trợ trực tuyến</strong> <span onclick="toggleChatBox()"
+				class="chat-close">&times;</span>
+
+		</div>
+		<div class="chat-body" id="chatBody">
+			<ul id="chatList" class="chatList">
+				<!-- List of predefined questions -->
+				<li class="chat-question" onclick="showAnswer(this)">Xin chào!
+					Bạn cần hỗ trợ gì?</li>
+				<li class="chat-question" onclick="showAnswer(this)">Liên hệ
+					với chúng tôi</li>
+				<li th:each="msg : ${chatMessages}" th:text="${msg.content}"
+					th:class="${msg.sender.username} == ${username} ? 'chat-message me' : 'chat-message user'">
+				</li>
+				</li>
+			</ul>
+		</div>
+		<div class="chat-input">
+			<!-- Check if the user is authenticated -->
+			<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+				<input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+				<button onclick="sendMessage()">Gửi</button>
+			</div>
+
+			<!-- If not authenticated, show the login modal -->
+			<div sec:authorize="!isAuthenticated()">
+				<input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+				<button onclick="showLoginModal()">Gửi</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="loginModal" tabindex="-1"
+		aria-labelledby="loginModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginModalLabel">Vui lòng đăng
+						nhập để chat</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Để gửi tin nhắn, bạn cần đăng nhập
+					trước.</div>
+				<div class="modal-footer">
+
+					<a href="/login" class="btn btn-primary">Đăng nhập</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.2/dist/sockjs.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="@{/js/product.js}"></script>
+
+	<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Gọi sự kiện click cho tab "Mới Nhất"
+    document.getElementById("latest-products-tab").click();
+});
+document.querySelectorAll('.tab-item').forEach(tab => {
+    tab.addEventListener('click', function () {
+        document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        const type = this.getAttribute('data-type');
+        let url = "";
+
+        if (type === "new-today") {
+            url = '/api/products/new-today';
+        } else if (type === "suggest") {
+            const categoryId = this.getAttribute('data-category-id');
+            url = `/api/products/suggested-products?categoryId=${categoryId}`;
+        }
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const productListContainer = document.getElementById('product-list');
+                const noProductsDiv = document.querySelector('.no-products');
+
+                productListContainer.innerHTML = "";
+
+                if (data.length === 0) {
+                    noProductsDiv.style.display = 'block';
+                    return;
+                } else {
+                    noProductsDiv.style.display = 'none';
+                }
+
+                data.forEach(product => {
+                    const col = document.createElement('div');
+                    col.classList.add('col');
+
+                    const formattedPrice = new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                    }).format(product.price);
+
+                    const discountHTML = product.discount > 0
+                        ? `<div class="discount">${product.discount}%</div>`
+                        : '';
+
+                    col.innerHTML = `
+                        <div class="product-card">
+                            <img src="/loadImage?imageName=${product.imageUrl}" alt="${product.name}" class="img-fluid mt-2" style="max-width: 150px;">
+                            <a class="product-name" href="/chi-tiet-san-pham/${product.id}">${product.name}</a>
+                            ${discountHTML}
+                        </div>
+                    `;
+
+                    productListContainer.appendChild(col);
+                });
+            })
+            .catch(err => console.error("Lỗi khi load sản phẩm:", err));
+    });
+});
+
+// Tự động click tab mặc định
+document.addEventListener("DOMContentLoaded", function () {
+    const defaultTab = document.querySelector('.tab-item.active');
+    if (defaultTab) defaultTab.click();
+});
+</script>
+
+
+	<script>
+	let stompClient = null;
+	let connected = false;  // Track if the WebSocket is connected
+
+	// Connect to WebSocket using SockJS
+	// Connect to WebSocket using SockJS
+function connectWebSocket() {
+    const socket = new SockJS('/ws');  // This should match your server-side "/ws" endpoint
+    stompClient = StompJs.Stomp.over(socket); 
+    stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+        connected = true;  // Set the connected flag to true after a successful connection
+        subscribeToMessages();  // Subscribe to receive messages
+    }, function (error) {
+        console.error('Error connecting to WebSocket: ', error);
+        connected = false;  // Set connected flag to false if connection fails
+    });
+}
+
+
+	// Send a message using WebSocket
+	function sendMessage() {
+    const messageInput = document.getElementById("chatMessage");
+    const messageContent = messageInput.value.trim();
+    const senderUsername = document.getElementById("loggedInUser").textContent.trim();
+    const receiverUsername = '0928666622'; // hoặc biến receiver nếu là dynamic
+
+    if (!connected || !messageContent) return;
+
+    const chatMessage = {
+        senderUsername: senderUsername,
+        receiverUsername: receiverUsername,
+        content: messageContent
+    };
+
+    // ❌ KHÔNG append message tại đây nữa
+    stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
+    messageInput.value = "";
+}
+
+	function subscribeToMessages() {
+	    const receiverUsername = '0928666622'; // hoặc dùng biến nếu động
+
+	    stompClient.subscribe(`/topic/messages/${receiverUsername}`, function (messageOutput) {
+	        const message = JSON.parse(messageOutput.body);
+	        const sender = document.getElementById("loggedInUser").textContent.trim();
+	        const chatList = document.getElementById("chatList");
+
+	        // Tạo thẻ <li> đúng theo format giống Thymeleaf
+	        const li = document.createElement("li");
+	        li.textContent = message.content;
+
+	        // Gán class theo người gửi
+	        if (message.senderUsername === sender) {
+	            li.className = "chat-message me";
+	        } else {
+	            li.className = "chat-message user";
+	        }
+
+	        chatList.appendChild(li);
+	        chatList.scrollTop = chatList.scrollHeight;
+	    });
+	}
+
+	// Initialize WebSocket connection when the page loads
+	window.onload = function() {
+	    connectWebSocket();
+	    subscribeToMessages();
+	
+	};
+
+	// Show login modal if user is not authenticated
+	function showLoginModal() {
+	    const myModal = new bootstrap.Modal(document.getElementById('loginModal'));
+	    myModal.show();
+	}
+
+	function toggleChatBox() {
+	    const chatBox = document.getElementById("miniChatBox");
+	    chatBox.style.display = chatBox.style.display === "none" || chatBox.style.display === "" ? "flex" : "none";
+	}
+
+	
+	
+	function showAnswer(element) {
+	    const questionText = element.textContent.trim();
+	    let answerText = "";
+
+	    // Define answers to the questions
+	if (questionText.includes("Xin chào")) {
+    answerText = "Chúng tôi cung cấp các dịch vụ hỗ trợ trực tuyến, vui lòng đăng nhập để nhắn tin trực tuyến.";
+} else if (questionText.includes("Liên hệ")) {
+    answerText = "Bạn có thể liên hệ qua email usspharmaco3007@gmail.com hoặc gọi số hotline: 092 866 66 22";
+} else {
+    answerText = "Xin lỗi, chúng tôi không có câu trả lời cho câu hỏi này.";
+}
+
+	    // Create the answer element
+	    const answer = document.createElement("div");
+	    answer.classList.add("chat-answer");
+	    answer.textContent = answerText;
+
+	    // Append the answer at the end of the chat body, not after the question
+	    const chatBody = document.getElementById("chatBody");
+	    chatBody.appendChild(answer);
+
+	    // Ensure the new answer is visible
+	    answer.style.display = "block";
+
+	    // Scroll the chat body to the bottom
+	    chatBody.scrollTop = chatBody.scrollHeight;
+	}
+
+	
+
+</script>
+</body>
+</html>

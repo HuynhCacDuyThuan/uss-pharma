@@ -1,0 +1,852 @@
+<!doctype html>
+
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Quản lý danh mục</title>
+
+  <meta name="description" content="Quản lý danh mục" />
+<meta name="keywords" content="Quản lý danh mục">
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/vendor/fonts/iconify-icons.css" />
+
+    <!-- Core CSS -->
+    <!-- build:css assets/vendor/css/theme.css  -->
+
+    <link rel="stylesheet" href="/assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="/assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+
+    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- endbuild -->
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="/assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+
+    <script src="/assets/js/config.js"></script>
+  </head>
+  <style>
+   .app-brand-logo1 {
+  display: flex !important;          /* Use Flexbox for easy centering */
+  justify-content: center !important; /* Center horizontally */
+  align-items: center !important;    /* Center vertically */
+  height: 100% !important;           /* Ensure it takes full height of its parent */
+}
+.color {
+    color: #003087 !important;
+}
+.app-brand-logo1 img {
+  display: block;        /* Makes the image a block-level element */
+       /* Keep aspect ratio */
+  max-height: 77px !important;      /* Limit height */
+}
+  
+    /* Pagination Styles */
+    .pagination {
+      margin: 20px 0; /* Add margin to separate from content */
+    }
+      /* Table Header Styling */
+  table thead th {
+    background-color: #f8f9fa; /* Light background color for the header */
+    color: #495057; /* Dark text color for better contrast */
+    text-align: center; /* Center the header text */
+    font-weight: bold; /* Make header text bold */
+  }
+
+  /* Table Row Styling */
+  tbody tr {
+    background-color: #ffffff; /* White background for table rows */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  /* Table Row Hover Effect */
+  tbody tr:hover {
+    background-color: #f1f1f1; /* Light gray background on hover */
+  }
+
+  /* Table Cell Styling */
+  td {
+    padding: 12px 15px; /* Add padding for spacing */
+    vertical-align: middle; /* Center the content vertically */
+    text-align: center; /* Center the content horizontally */
+  }
+
+ 
+
+  .dropdown-menu .dropdown-item {
+    color: black; /* White text color for dropdown items */
+    padding: 10px 15px; /* Add padding for the items */
+    font-size: 14px; /* Set a smaller font size */
+  }
+
+  
+
+  /* Button Style inside the Dropdown */
+  .dropdown-item i {
+    margin-right: 8px; /* Add spacing between the icon and text */
+  }
+
+  /* Icon Style for the dropdown button */
+  .dropdown-toggle i {
+    color: #007bff; /* Blue color for the icon */
+    font-size: 1.5rem; /* Increase the icon size */
+  }
+
+  /* Customizing the dropdown button hover */
+  .dropdown-toggle:hover i {
+    color: #0056b3; /* Darker blue on hover */
+  }
+    .pagination .page-item .page-link {
+      padding: 10px 15px; /* Add padding for clickable area */
+      color: #007bff; /* Primary color for links */
+      border: 1px solid #dee2e6; /* Border color */
+      border-radius: 0.25rem; /* Border radius for rounded corners */
+    }
+    
+    .pagination .page-item.active .page-link {
+      background-color: #007bff; /* Background color for active item */
+      color: white; /* Text color for active item */
+      border: 1px solid #007bff; /* Match border with background */
+    }
+  
+    .pagination .page-item.disabled .page-link {
+      color: #6c757d; /* Gray color for disabled links */
+      cursor: not-allowed; /* Change cursor to indicate disabled state */
+    }
+  
+    /* Icon Styles */
+    .dropdown-menu .dropdown-item {
+      display: flex; /* Use flex to align icon and text */
+      align-items: center; /* Center vertically */
+      padding: 10px; /* Add padding */
+    }
+    
+    .dropdown-menu .dropdown-item i {
+      margin-right: 10px; /* Space between icon and text */
+    }
+  
+  </style>
+
+  <body>
+   <!-- Toast container -->
+<div id="toast-container" style="position: fixed; top: 10px; right: 10px; z-index: 9999;"></div>
+
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+                <th:block th:replace="~{fragments/silde :: silde}"></th:block>
+        <div class="layout-page">
+          <!-- Navbar -->
+
+           <nav
+            class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme"
+            id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+                <i class="icon-base bx bx-menu icon-md"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
+              <!-- Search -->
+              <div class="navbar-nav align-items-center me-auto">
+                <div class="nav-item d-flex align-items-center">
+                 
+                 
+                </div>
+              </div>
+              <!-- /Search -->
+
+              <ul class="navbar-nav flex-row align-items-center ms-md-auto">
+                <!-- Place this tag where you want the button to render. -->
+               
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow p-0"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                   <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 class="mb-0" sec:authentication="name">John Doe</h6>
+                            <small class="text-body-secondary">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                   
+                   
+                   
+                    
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                     <li>
+                      <a class="dropdown-item" th:href="@{/logout}">
+                        <i class="icon-base bx bx-power-off icon-md me-3" ></i><span>Đăng xuất</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+          </nav>
+
+       <div class="container my-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="text-start color mb-0">Quản lý danh mục</h5>
+              
+              <div class="d-flex justify-content-end">
+                   <button class="btn btn-primary p-2 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                  <i class="fas fa-plus me-2"></i> Thêm danh mục
+                </button>
+            
+              </div>
+            </div>
+
+            <!-- Category Table -->
+            <div class="card" id="parentTable">
+              <h5 class="card-header">Danh sách danh mục</h5>
+              <div class="table-responsive text-nowrap">
+                <table class="table table-striped" >
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tên danh mục</th>
+                    
+                      <th>Danh mục con</th>
+                        <th></th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-border-bottom-0">
+                    <tr th:each="category : ${categories}">
+                      <td th:text="${category.id}"></td>
+                      <td th:text="${category.name}"></td>
+                   <td>
+    <button class="btn btn-info" th:onclick="'loadSubCategories(' + ${category.id} + ')'">Xem danh mục con</button>
+</td>
+                      <td>
+                        <div class="dropdown">
+                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                          </button>
+                          
+                          <div class="dropdown-menu">
+                           
+                            
+                            <a href="javascript:void(0);" 
+   class="dropdown-item" 
+   data-bs-toggle="modal" 
+   data-bs-target="#editCategoryModal"
+   th:data-id="${category.id}" 
+   th:data-name="${category.name}">
+   <i class="icon-base bx bx-edit-alt me-1"></i> Sửa
+</a>
+                            <a class="dropdown-item" th:href="@{/admin/delete-category/{id}(id=${category.id})}">
+                              <i class="icon-base bx bx-trash me-1"></i> Xóa
+                            </a>
+                       <a class="dropdown-item" href="javascript:void(0);" 
+   data-bs-toggle="modal" 
+   data-bs-target="#addSubCategoryModal"
+   th:data-parent-id="${category.id}">
+   <i class="icon-base bx bx-plus me-1"></i> Thêm danh mục con
+</a>
+
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+            </div>
+
+
+
+            <!-- Pagination -->
+              <nav aria-label="Page navigation" id="parentPagination">
+        <ul class="pagination justify-content-end">
+          <!-- Previous Button -->
+          <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+            <a class="page-link" th:href="@{/admin/category?page=${currentPage - 1}}">Previous</a>
+          </li>
+
+          <!-- Page Numbers -->
+          <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${i == currentPage} ? 'active'">
+            <a class="page-link" th:href="@{/admin/category?page=${i}}" th:text="${i + 1}">1</a>
+          </li>
+
+          <!-- Next Button -->
+          <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+            <a class="page-link" th:href="@{/admin/category?page=${currentPage + 1}}">Next</a>
+          </li>
+        </ul>
+      </nav>
+      
+      
+      
+       
+           <div class="card mt-4" id="subCategoryTableContainer" style="display: none;">
+           
+           
+           <h5 class="card-header d-flex justify-content-between align-items-center">
+    <span>Danh sách danh mục con</span>
+ <div class="d-flex" id="backButtonContainer" style="display: none;">
+    <i class="fas fa-arrow-left" onclick="goBack()" style="cursor: pointer;"></i>
+</div>
+  
+</h5>
+            <div class="table-responsive text-nowrap">
+                <table class="table table-striped" id="subCategoryTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên danh mục con</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="subCategoryTableBody">
+                        <!-- Subcategories will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+          </div>
+            
+       </div>
+      
+  
+              <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+          </div>
+          <!-- / Layout page -->
+        </div>
+  
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+      </div>
+      <!-- / Layout wrapper -->
+  
+       <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addCategoryModalLabel">Thêm danh mục mới</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form id="addCategoryForm">
+                    <div class="mb-3">
+                      <label for="categoryName" class="form-label">Tên danh mục</label>
+                      <input type="text" class="form-control" id="categoryName" required />
+                    </div>
+                   
+                    <div class="d-flex justify-content-end">
+                      <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+     <!-- Modal for Editing Category -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCategoryModalLabel">Sửa danh mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryForm">
+                    <div class="mb-3">
+                        <label for="editCategoryName" class="form-label">Tên danh mục</label>
+                        <input type="text" class="form-control" id="editCategoryName" required />
+                    </div>
+                    <input type="hidden" id="editCategoryId" />
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addSubCategoryModal" tabindex="-1" aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title" id="addSubCategoryModalLabel">Thêm danh mục con</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+               <form id="addSubCategoryForm" enctype="multipart/form-data">
+                   <div class="mb-3">
+                       <label for="subCategoryName" class="form-label">Tên danh mục con</label>
+                       <input type="text" class="form-control" id="subCategoryName" required />
+                   </div>
+                   <div class="mb-3">
+                       <label for="parentCategoryId" class="form-label">Chọn danh mục cha</label>
+                       <input type="text" class="form-control" id="parentCategoryId" required />
+                   </div>
+                   <div class="mb-3">
+                       <label for="categoryImage" class="form-label">Ảnh danh mục</label>
+                       <input type="file" class="form-control" id="categoryImage" />
+                   </div>
+                   <div class="d-flex justify-content-end">
+                       <button type="submit" class="btn btn-primary">Lưu</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
+</div>
+
+<div class="modal fade" id="editSubCategoryModal" tabindex="-1" aria-labelledby="editSubCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSubCategoryModalLabel">Sửa danh mục con</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editSubCategoryForm" enctype="multipart/form-data"> <!-- Add enctype for file upload -->
+                    <div class="mb-3">
+                        <label for="editSubCategoryName" class="form-label">Tên danh mục con</label>
+                        <input type="text" class="form-control" id="editSubCategoryName" required />
+                    </div>
+                    <input type="hidden" id="editSubCategoryId" />
+
+                    <!-- Image Upload Field -->
+                    <div class="mb-3">
+                        <label for="editSubCategoryImage" class="form-label">Chọn ảnh</label>
+                        <input type="file" class="form-control" id="editSubCategoryImage" accept="image/*" />
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <!-- Core JS -->
+  
+      <script src="/assets/vendor/libs/jquery/jquery.js"></script>
+  
+      <script src="/assets/vendor/libs/popper/popper.js"></script>
+      <script src="/assets/vendor/js/bootstrap.js"></script>
+  
+      <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+  
+      <script src="/assets/vendor/js/menu.js"></script>
+  
+      <!-- endbuild -->
+  
+      <!-- Vendors JS -->
+  
+      <!-- Main JS -->
+  
+      <script src="/assets/js/main.js"></script>
+  
+      
+      <!-- Page JS -->
+      <script type="text/javascript">
+      
+      const editButtons = document.querySelectorAll('[data-bs-toggle="modal"]');
+      editButtons.forEach(button => {
+          button.addEventListener('click', function() {
+              const categoryId = this.getAttribute('data-id');
+              const categoryName = this.getAttribute('data-name');
+              
+              // Set the data in the modal form
+              document.getElementById('editCategoryId').value = categoryId;
+              document.getElementById('editCategoryName').value = categoryName;
+          });
+      });
+
+      // Handle form submission for editing category
+      document.getElementById("editCategoryForm").addEventListener("submit", function(event) {
+          event.preventDefault(); // Prevent default form submission
+          
+          const categoryId = document.getElementById("editCategoryId").value;
+          const categoryName = document.getElementById("editCategoryName").value;
+
+          const categoryData = {
+              id: categoryId,
+              name: categoryName
+          };
+
+          // Send PUT request to update the category
+          fetch(`/api/parent-categories/${categoryId}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(categoryData),
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.id) {
+                  // If successful, show a success message
+                  showToast("Danh mục được sửa thành công!");
+
+                  // Optionally, reset the form
+                  document.getElementById("editCategoryForm").reset();
+
+                  // You can also refresh the table or perform other actions here
+                  // Example: Reload the page to see the updated category
+                  location.reload();
+              } else {
+                  // If something goes wrong, show an error message
+                  showToast("Đã có lỗi xảy ra. Vui lòng thử lại.");
+              }
+          })
+          .catch(error => {
+              // Handle error
+              console.error('Error:', error);
+              showToast("Đã có lỗi xảy ra. Vui lòng thử lại.");
+          });
+      });
+      document.getElementById("addCategoryForm").addEventListener("submit", function(event) {
+    	    event.preventDefault(); // Prevent default form submission
+    	    
+    	    const categoryName = document.getElementById("categoryName").value;
+    	    
+    	    // Create a payload to send to the API
+    	    const categoryData = {
+    	        name: categoryName,
+    	        // Add parentCategory if needed, or leave it null
+    	        category: null  // For this example, we assume the parent category is null
+    	    };
+
+    	    // Send POST request to the backend API to create a new ParentCategory
+    	    fetch('/api/parent-categories', {
+    	        method: 'POST',
+    	        headers: {
+    	            'Content-Type': 'application/json',
+    	        },
+    	        body: JSON.stringify(categoryData),
+    	    })
+    	    .then(response => response.json())
+    	    .then(data => {
+    	        if (data.id) {
+    	            // If successful, show a success message
+    	            showToast("Danh mục được thêm thành công!");
+
+    	            // Optionally, reset the form
+    	            document.getElementById("categoryName").value = "";
+
+    	            // You can also refresh the table or perform other actions here
+    	            // Example: Reload the page to see the newly added category in the list
+    	            location.reload();
+    	        } else {
+    	            // If something goes wrong, show an error message
+    	            showToast("Đã có lỗi xảy ra. Vui lòng thử lại.");
+    	        }
+    	    })
+    	    .catch(error => {
+    	        // Handle error
+    	        console.error('Error:', error);
+    	        showToast("Đã có lỗi xảy ra. Vui lòng thử lại.");
+    	    });
+    	});
+
+    	// Function to create and show a toast
+    	function showToast(message) {
+    	    const toast = document.createElement('div');
+    	    toast.classList.add('toast');
+    	    toast.textContent = message;
+
+    	    const toastContainer = document.getElementById('toast-container');
+    	    toastContainer.appendChild(toast);
+
+    	    setTimeout(() => {
+    	        toast.classList.add('show');
+    	    }, 10);
+
+    	    setTimeout(() => {
+    	        toast.remove();
+    	    }, 3500);  // Toast disappears after 3.5 seconds
+    	}
+    	const addSubCategoryButtons = document.querySelectorAll('[data-bs-toggle="modal"]');
+    	addSubCategoryButtons.forEach(button => {
+    	    button.addEventListener('click', function() {
+    	        const parentCategoryId = this.getAttribute('data-parent-id');
+    	        
+    	        // Set the parent category ID in the modal
+    	        document.getElementById('parentCategoryId').value = parentCategoryId;
+    	    });
+    	});
+    	document.getElementById("addSubCategoryForm").addEventListener("submit", function(event) {
+    	    event.preventDefault(); // Prevent default form submission
+    	    
+    	    const subCategoryName = document.getElementById("subCategoryName").value;
+    	    const parentCategoryId = document.getElementById("parentCategoryId").value;
+    	    const categoryImage = document.getElementById("categoryImage").files[0]; 
+
+    	    // Create a category object
+    	    const category = {
+    	        name: subCategoryName,
+    	        parentCategory: { id: parentCategoryId } // Adjust this according to your backend structure
+    	    };
+
+    	    // Create a FormData object to send multipart data
+    	    const formData = new FormData();
+    	    formData.append('category', JSON.stringify(category));  // Append the category as a JSON string
+    	    formData.append('image', categoryImage); // Append the image
+
+    	    // Send POST request to the backend API to create a new subcategory
+    	    fetch('/api/categories/add-subcategory', {
+    	        method: 'POST',
+    	        body: formData, // Use FormData to automatically set the correct content-type
+    	    })
+    	    .then(response => response.json())
+    	    .then(data => {
+    	        if (data.id) {
+    	            // If successful, show a success message
+    	            showToast("Danh mục con được thêm thành công!");
+
+    	            // Optionally, reset the form
+    	            document.getElementById("subCategoryName").value = "";
+
+    	            // You can also refresh the table or perform other actions here
+    	            location.reload();
+    	        } else {
+    	            // If something goes wrong, show an error message
+    	            showToast("Đã có lỗi xảy ra. Vui lòng thử lại.");
+    	        }
+    	    })
+    	    .catch(error => {
+    	        // Handle error
+    	        console.error('Error:', error);
+    	        showToast("Đã có lỗi xảy ra. Vui lòng thử lại.");
+    	    });
+    	});
+
+
+    	
+    	// Function to load subcategories when user clicks on a parent category
+    	function loadSubCategories(parentId) {
+    	    // Hide the parent table and pagination
+    	    document.getElementById("parentTable").style.display = "none";
+    	    document.getElementById("parentPagination").style.display = "none"; // Hide parent pagination
+    	    
+    	    // Show the subcategory table and back button
+    	    document.getElementById("subCategoryTableContainer").style.display = "block";
+    	    document.getElementById("backButtonContainer").style.display = "block";  // Show the "back" button
+
+    	    // Fetch subcategories from the API
+    	    fetch(`/api/categories/parent/${parentId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Clear any existing subcategories in the table
+                const subCategoryTableBody = document.getElementById("subCategoryTableBody");
+                subCategoryTableBody.innerHTML = "";
+
+                // Add each subcategory and its main product to the table
+                data.forEach(subCategory => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${subCategory.id}</td>
+                        <td>${subCategory.name}</td>
+                        <td>
+            
+                            <i class="fas fa-trash text-danger"" onclick="deleteSubCategory(${subCategory.id}, ${parentId})"></i> 
+                     
+
+                        <i class="fas fa-edit text-warning"  onclick="editSubCategory(${subCategory.id}, ${parentId})"></i> 
+                   
+                    </td>
+                    `;
+                    subCategoryTableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching subcategories:", error);
+                alert("Đã có lỗi xảy ra khi tải danh mục con.");
+            });
+    }
+    	// Function to go back to the parent table
+    	function goBack() {
+    	    // Hide the subcategory table and "back" button
+    	    document.getElementById("subCategoryTableContainer").style.display = "none";
+    	    document.getElementById("backButtonContainer").style.display = "none";  // Hide back button
+
+    	    // Show the parent table and pagination again
+    	    document.getElementById("parentTable").style.display = "block";
+    	    document.getElementById("parentPagination").style.display = "block"; // Show parent pagination again
+    	}
+    	
+    	
+      </script>
+ <script type="text/javascript">
+ function deleteSubCategory(subCategoryId, parentId) {
+	    // Show confirmation dialog using SweetAlert
+	    Swal.fire({
+	        title: 'Bạn có chắc chắn muốn xóa danh mục con này?',
+	        text: "Danh mục con sẽ bị xóa vĩnh viễn.",
+	        icon: 'warning',
+	        showCancelButton: true,
+	        confirmButtonColor: '#3085d6',
+	        cancelButtonColor: '#d33',
+	        confirmButtonText: 'Có, xóa nó!',
+	        cancelButtonText: 'Hủy'
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            // If confirmed, make the API call to delete the subcategory
+	            fetch(`/api/categories/delete/${subCategoryId}`, {
+	                method: 'PUT',  // Using PUT for soft deletion
+	                headers: {
+	                    'Content-Type': 'application/json',
+	                },
+	            })
+	            .then(response => {
+	                if (!response.ok) {
+	                    throw new Error('Failed to delete subcategory.');
+	                }
+	                return response.json();
+	            })
+	            .then(data => {
+	                // Notify user of success and reload subcategories table
+	                Swal.fire(
+	                    'Đã xóa!',
+	                    'Danh mục con đã được xóa.',
+	                    'success'
+	                ).then(() => {
+	                    // Reload the subcategory table for the specific parentId
+	                    loadSubCategories(parentId); // Pass the parentId to reload subcategories
+	                });
+	            })
+	            .catch(error => {
+	                // Handle error (e.g., network issues)
+	                Swal.fire(
+	                    'Lỗi!',
+	                    'Đã có lỗi xảy ra khi xóa danh mục con.',
+	                    'error'
+	                );
+	            });
+	        }
+	    });
+	}
+ 
+//Function to populate the modal with the subcategory data when editing
+ function editSubCategory(subCategoryId, parentId) {
+     // Fetch the subcategory details from the API
+     fetch(`/api/categories/${subCategoryId}`)
+         .then(response => response.json())
+         .then(subCategory => {
+             // Populate the modal with the data for editing
+             document.getElementById('editSubCategoryId').value = subCategory.id;
+             document.getElementById('editSubCategoryName').value = subCategory.name;
+             document.getElementById('parentCategoryId').value = parentId; // Store the parentId in the modal
+
+             // Show the edit modal
+             $('#editSubCategoryModal').modal('show');
+         })
+         .catch(error => console.error('Error fetching subcategory:', error));
+ }
+
+ // Handle form submission for editing subcategory
+ document.getElementById("editSubCategoryForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const subCategoryId = document.getElementById("editSubCategoryId").value;
+    const subCategoryName = document.getElementById("editSubCategoryName").value;
+    const subCategoryImage = document.getElementById("editSubCategoryImage").files[0]; // Get the image file (if any)
+    const parentId = document.getElementById("parentCategoryId").value;
+    // Create FormData to send both text and file data
+    const formData = new FormData();
+    formData.append('category', JSON.stringify({
+        id: subCategoryId,
+        name: subCategoryName,
+        // Removed parentCategory data, as it's no longer needed
+    }));
+    if (subCategoryImage) {
+        formData.append('image', subCategoryImage); // Append the image file if it's provided
+    }
+
+    // Send PUT request to update the subcategory
+    fetch(`/api/categories/${subCategoryId}`, {
+        method: 'PUT',
+        body: formData,  // Use FormData to send both data and file
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.id) {
+            // If successful, show a success message
+            showToast("Danh mục con được sửa thành công!");
+
+            // Optionally, reset the form
+            document.getElementById("editSubCategoryForm").reset();
+
+            // Hide the modal
+            $('#editSubCategoryModal').modal('hide');
+
+            // Reload the subcategories for the specific parentId
+           
+            loadSubCategories(parentId);// Reload the subcategories without sending parentId
+        } else {
+            // If something goes wrong, show an error message
+            showToast("Đã có lỗi xảy ra. Vui lòng thử lại.");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showToast("Đã có lỗi xảy ra. Vui lòng thử lại.");
+    });
+});
+</script>
+ 
+  <!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+     
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+    </body>
+  </html>

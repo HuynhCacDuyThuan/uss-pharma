@@ -1,0 +1,87 @@
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+    position: relative; /* Allow absolute positioning of elements inside */
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.product-name {
+	text-decoration: none; /* Remove underline */
+	color: #003087 !important; /* Set a dark color for the link */
+	font-size: 14px; /* Adjust the font size */
+	font-weight: bold; /* Make the font bold */
+	transition: color 0.3s ease, transform 0.3s ease;
+	/* Smooth transition for hover effects */
+}
+
+.product-name:hover {
+	color: #003087 !important; /* Change color on hover */
+	transform: scale(1.05); /* Slightly enlarge the text on hover */
+}
+.discount {
+    color: red;
+    font-weight: bold;
+    position: absolute; /* Position relative to the card */
+    top: 0px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.7); /* Optional: Add a background for readability */
+    padding: 5px 10px; /* Space around the text */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+.product-name {
+    font-size: 16px;
+    margin: 10px 0;
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+    overflow: hidden; /* Hide the overflowing text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    display: block; /* Ensure the element is treated as a block for overflow to work */
+}
+
+.price {
+    font-size: 14px; /* Increase font size */
+    font-weight: bold; /* Make the price bold */
+  
+   
+    padding: 5px 10px; /* Add some padding around the price */
+   
+    border-radius: 5px; /* Rounded corners for a cleaner look */
+    display: inline-block; /* Make the background fit around the price text */
+  
+}
+.p5-10{
+	 padding: 5px 10px; /* Add some padding around the price */
+}
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.category {
+    font-size: 14px;
+    color: #666;
+}
+
+.tabs-header {
+    margin-bottom: 20px;
+}
+
+.tabs-header .tab-item {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.tabs-header .tab-item.active {
+    background-color: #007bff;
+    color: white;
+}

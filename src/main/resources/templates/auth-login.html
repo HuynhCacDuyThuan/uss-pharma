@@ -1,0 +1,173 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+<title>Đăng nhập - USS PHARMA</title>
+
+<meta name="description"
+	content="Đăng nhập - USS PHARMA">
+<meta name="keywords"
+	content="Đăng nhập - USS PHARMA">
+
+<!-- Favicon -->
+<link rel="icon" sizes="32x32" type="image/x-icon"
+	href="/assets/img/favicon/favicon.ico" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+	rel="stylesheet" />
+
+<link rel="stylesheet" href="/assets/vendor/fonts/iconify-icons.css" />
+
+<!-- Core CSS -->
+<!-- build:css assets/vendor/css/theme.css  -->
+<!-- Toastify CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<!-- Toastify JS -->
+
+
+<link rel="stylesheet" href="/assets/vendor/css/core.css" />
+<link rel="stylesheet" href="/assets/css/demo.css" />
+
+<!-- Vendors CSS -->
+
+<link rel="stylesheet"
+	href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+<!-- endbuild -->
+
+<!-- Page CSS -->
+<!-- Page -->
+<link rel="stylesheet" href="/assets/vendor/css/pages/page-auth.css" />
+
+<!-- Helpers -->
+<script src="/assets/vendor/js/helpers.js"></script>
+<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+
+<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+<style type="text/css">
+ .app-brand-logo1 {
+  display: flex !important;          /* Use Flexbox for easy centering */
+  justify-content: center !important; /* Center horizontally */
+  align-items: center !important;    /* Center vertically */
+  height: 100% !important;           /* Ensure it takes full height of its parent */
+}
+.app-brand-text.demo {
+    color: cadetblue !important;
+    margin-left: -31px !important;
+    font-size: 1.75rem;
+    letter-spacing: -0.5px;
+}
+.app-brand-logo1 img {
+  display: block;        /* Makes the image a block-level element */
+       /* Keep aspect ratio */
+  max-height: 77px !important;      /* Limit height */
+}
+</style>
+<script src="/assets/js/config.js"></script>
+</head>
+
+<body>
+	<!-- Content -->
+
+	<div class="container-xxl">
+		<div class="authentication-wrapper authentication-basic container-p-y">
+			<div class="authentication-inner">
+				<!-- Register -->
+				<div class="card px-sm-6 px-0">
+					<div class="card-body">
+						<!-- Logo -->
+						<div class="app-brand justify-content-center">
+							<a href="/" class="app-brand-link gap-2"> <span class="app-brand-logo1 ms-5 demo">
+      <span class="text-primary">
+        <img src="https://ctyduocphamquocteuss.com/wp-content/uploads/2025/03/logo-1024x576.png" alt="Logo">
+      </span>
+    </span>
+							 <span class="app-brand-text demo text-heading fw-bold">USS
+									PHARMA</span>
+							</a>
+						</div>
+						<!-- /Logo -->
+						
+
+					   <form th:action="@{/dang-nhap}" method="POST" id="login-form">
+					   <div th:if="${errorMessage}" class="alert alert-danger mt-3">
+              <span th:text="${errorMessage}"></span>
+            </div>
+
+            <!-- Hiển thị thông báo thành công nếu đăng nhập thành công -->
+            <div th:if="${successMessage}" class="alert alert-success mt-3">
+              <span th:text="${successMessage}"></span>
+            </div>
+            
+                            <div class="mb-6">
+                                <label for="name" class="form-label">Số điện thoại</label>
+                                <input type="number"   th:value="${username}" class="form-control" id="username" name="username" placeholder="Số điện thoại" required autofocus />
+                            </div>
+                            <div class="mb-6">
+                                <label for="password" class="form-label">Mật khẩu</label>
+                                <input type="password"   th:value="${password}"  class="form-control" id="password" name="password" placeholder="Mật khẩu" required />
+                            </div>
+
+                            <div class="mb-6">
+                                <button type="submit" class="btn btn-primary d-grid w-100">Đăng nhập</button>
+                            </div>
+                            
+                        </form>
+                        <div class="mb-4 text-center">
+    <a href="/quen-mat-khau" class="text-muted small">
+        <i class="bx bx-lock-open-alt me-1"></i> Quên mật khẩu?
+    </a>
+</div>
+						<p class="text-center">
+							<span>Bạn chưa có tài khoản ?</span> <a
+								href="/dang-ki"> <span>Tạo tài khoản</span>
+							</a>
+						</p>
+					</div>
+				</div>
+				<!-- /Register -->
+			</div>
+		</div>
+	</div>
+
+	<!-- / Content -->
+
+
+
+	<!-- Core JS -->
+
+	<script src="/assets/vendor/libs/jquery/jquery.js"></script>
+
+	<script src="/assets/vendor/libs/popper/popper.js"></script>
+	<script src="/assets/vendor/js/bootstrap.js"></script>
+
+	<script
+		src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+	<script src="/assets/vendor/js/menu.js"></script>
+
+	<!-- endbuild -->
+
+	<!-- Vendors JS -->
+
+	<!-- Main JS -->
+
+	<script src="/assets/js/main.js"></script>
+
+	<!-- Page JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+	<!-- Place this tag before closing body tag for github widget button. -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
