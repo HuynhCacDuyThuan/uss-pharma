@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import com.example.demo.modal.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,4 +30,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	  
 	  @Query("SELECT p FROM Product p WHERE p.deleted = false AND p.category.id = :categoryId")
 	  List<Product> findTodayProductsByCategory(@Param("categoryId") Long categoryId);
+	  Optional<Product> findBySlugAndDeletedFalse(String slug);
 }

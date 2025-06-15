@@ -15,7 +15,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         // Kênh trả dữ liệu về client
         config.enableSimpleBroker("/topic");
 
-        // Kênh client gửi tin nhắn lên server
+        
         config.setApplicationDestinationPrefixes("/app");
     }
 

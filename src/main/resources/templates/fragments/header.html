@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg fixed-top ">
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand" th:href="@{/}"> 
-                <img src="https://ctyduocphamquocteuss.com/wp-content/uploads/2025/03/logo-1024x576.png" alt="Home Pharma" height="50">
+              <img th:src="${logoUrl}" alt="Home Pharma" height="50" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,18 +23,18 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" th:href="@{/}">TRANG CHỦ</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/gioi-thieu}">GIỚI THIỆU</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/san-pham}">SẢN PHẨM</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/gioi-thieu/}">GIỚI THIỆU</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/san-pham/}">SẢN PHẨM</a></li>
                      <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             TIN TỨC
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-                            <li><a class="dropdown-item" th:href="@{/tin-tuc}">Tin tức công ty</a></li>
-                            <li><a class="dropdown-item" th:href="@{/tuyen-dung}">Tuyển dụng</a></li>
+                            <li><a class="dropdown-item" th:href="@{/tin-tuc/}">Tin tức công ty</a></li>
+                            <li><a class="dropdown-item" th:href="@{/tuyen-dung/}">Tuyển dụng</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/lien-he}">LIÊN HỆ</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/lien-he/}">LIÊN HỆ</a></li>
                       <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
     <a class="nav-link" th:href="@{/quan-tri}">QUẢN TRỊ</a>
      </li>

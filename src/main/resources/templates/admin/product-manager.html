@@ -261,17 +261,17 @@
     <ul class="pagination justify-content-end">
         <!-- Previous Button -->
         <li th:class="${currentPage == 0 ? 'page-item disabled' : 'page-item'}">
-            <a class="page-link" th:href="@{/admin/products(page=${currentPage - 1}, size=${size})}" tabindex="-1">Previous</a>
+            <a class="page-link" th:href="@{/quan-ly-san-pham(page=${currentPage - 1}, size=${size})}" tabindex="-1">Previous</a>
         </li>
 
         <!-- Page Numbers -->
         <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}" th:class="${currentPage == pageNum ? 'page-item active' : 'page-item'}">
-            <a class="page-link" th:href="@{/admin/products(page=${pageNum}, size=${size})}" th:text="${pageNum + 1}"></a>
+            <a class="page-link" th:href="@{/quan-ly-san-pham(page=${pageNum}, size=${size})}" th:text="${pageNum + 1}"></a>
         </li>
 
         <!-- Next Button -->
         <li th:class="${currentPage == totalPages - 1 ? 'page-item disabled' : 'page-item'}">
-            <a class="page-link" th:href="@{/admin/products(page=${currentPage + 1}, size=${size})}">Next</a>
+            <a class="page-link" th:href="@{/quan-ly-san-pham(page=${currentPage + 1}, size=${size})}">Next</a>
         </li>
     </ul>
 </nav>

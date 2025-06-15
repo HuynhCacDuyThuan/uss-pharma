@@ -2,120 +2,123 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-  <title>Quên mật khẩu - USS PHARMA</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<title>Quên mật khẩu - Công ty TNHH Dược Phẩm Quốc tế USS</title>
 
-  <meta name="description" content="Quên mật khẩu - USS PHARMA">
-  <meta name="keywords" content="Quên mật khẩu, USS PHARMA, reset password">
+<meta name="description"
+	content="Quên mật khẩu - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta name="keywords"
+	content="Quên mật khẩu - Công ty TNHH Dược Phẩm Quốc tế USS">
 
-  <!-- Favicon -->
-  <link rel="icon" sizes="32x32" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+<!-- Favicon -->
+<link rel="icon" sizes="32x32" type="image/x-icon"
+	href="/assets/img/favicon/favicon.ico" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+	rel="stylesheet" />
 
-  <!-- Core CSS -->
-  <link rel="stylesheet" href="/assets/vendor/css/core.css" />
-  <link rel="stylesheet" href="/assets/css/demo.css" />
-  <link rel="stylesheet" href="/assets/vendor/css/pages/page-auth.css" />
-  <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<!-- Core CSS -->
+<link rel="stylesheet" href="/assets/vendor/css/core.css" />
+<link rel="stylesheet" href="/assets/css/demo.css" />
+<link rel="stylesheet" href="/assets/vendor/css/pages/page-auth.css" />
+<link rel="stylesheet"
+	href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-  <!-- Style -->
-  <style>
-    .app-brand-logo1 {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      height: 100% !important;
-    }
+<!-- Style -->
+<style>
+.app-brand-logo1 {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	height: 100% !important;
+}
 
-    .app-brand-text.demo {
-      color: cadetblue !important;
-      margin-left: -31px !important;
-      font-size: 1.75rem;
-      letter-spacing: -0.5px;
-    }
+.app-brand-text.demo {
+	color: cadetblue !important;
+	margin-left: -31px !important;
+	font-size: 1.75rem;
+	letter-spacing: -0.5px;
+}
 
-    .app-brand-logo1 img {
-      display: block;
-      max-height: 77px !important;
-    }
-  </style>
+.app-brand-logo1 img {
+	display: block;
+	max-height: 77px !important;
+}
+</style>
 
-  <!-- Scripts -->
-  <script src="/assets/vendor/js/helpers.js"></script>
-  <script src="/assets/js/config.js"></script>
+<!-- Scripts -->
+<script src="/assets/vendor/js/helpers.js"></script>
+<script src="/assets/js/config.js"></script>
 </head>
 
 <body>
-  <div class="container-xxl">
-    <div class="authentication-wrapper authentication-basic container-p-y">
-      <div class="authentication-inner">
-        <div class="card px-sm-6 px-0">
-          <div class="card-body">
-            <!-- Logo -->
-            <div class="app-brand justify-content-center mb-3">
-              <a href="/" class="app-brand-link gap-2">
-                <span class="app-brand-logo1 ms-5 demo">
-                  <img
-                    src="https://ctyduocphamquocteuss.com/wp-content/uploads/2025/03/logo-1024x576.png"
-                    alt="Logo" />
-                </span>
-                <span class="app-brand-text demo text-heading fw-bold">USS PHARMA</span>
-              </a>
-            </div>
-            <!-- /Logo -->
+	<div class="container-xxl">
+		<div class="authentication-wrapper authentication-basic container-p-y">
+			<div class="authentication-inner">
+				<div class="card px-sm-6 px-0">
+					<div class="card-body">
+						<!-- Logo -->
+						<div class="app-brand justify-content-center mb-3">
+							<a href="/" class="app-brand-link gap-2"> <span
+								class="app-brand-logo1 ms-5 demo"> <img
+									src="/assets/img/logo-1024x576.png" alt="Logo" />
+							</span> <span class="app-brand-text demo text-heading fw-bold">USS
+									PHARMA</span>
+							</a>
+						</div>
+						<!-- /Logo -->
 
-       
-            <p class="mb-4 text-center">Nhập email để nhận mật khẩu mới.</p>
 
-            <form th:action="@{/quen-mat-khau}" method="POST">
-              <div th:if="${errorMessage}" class="alert alert-danger">
-                <span th:text="${errorMessage}"></span>
-              </div>
+						<p class="mb-4 text-center">Nhập email để nhận mật khẩu mới.</p>
 
-              <div th:if="${successMessage}" class="alert alert-success">
-                <span th:text="${successMessage}"></span>
-              </div>
+						<form th:action="@{/quen-mat-khau}" method="POST">
+							<div th:if="${errorMessage}" class="alert alert-danger">
+								<span th:text="${errorMessage}"></span>
+							</div>
 
-              <div class="mb-4">
-                <label for="email" class="form-label">Địa chỉ email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email của bạn"
-                  required autofocus />
-              </div>
+							<div th:if="${successMessage}" class="alert alert-success">
+								<span th:text="${successMessage}"></span>
+							</div>
 
-              <div class="mb-3">
-                <button type="submit" class="btn btn-primary d-grid w-100">
-                 Lấy lại mật khẩu
-                </button>
-              </div>
-            </form>
+							<div class="mb-4">
+								<label for="email" class="form-label">Địa chỉ email</label> <input
+									type="email" class="form-control" id="email" name="email"
+									placeholder="Nhập email của bạn" required autofocus />
+							</div>
 
-            <div class="text-center">
-              <a href="/dang-nhap" class="d-flex align-items-center justify-content-center">
-                <i class="bx bx-chevron-left scaleX-n1-rtl me-1"></i>
-                Trở lại trang đăng nhập
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+							<div class="mb-3">
+								<button type="submit" class="btn btn-primary d-grid w-100">
+									Lấy lại mật khẩu</button>
+							</div>
+						</form>
 
-  <!-- Core JS -->
-  <script src="/assets/vendor/libs/jquery/jquery.js"></script>
-  <script src="/assets/vendor/libs/popper/popper.js"></script>
-  <script src="/assets/vendor/js/bootstrap.js"></script>
-  <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-  <script src="/assets/vendor/js/menu.js"></script>
-  <script src="/assets/js/main.js"></script>
+						<div class="text-center">
+							<a href="/dang-nhap"
+								class="d-flex align-items-center justify-content-center"> <i
+								class="bx bx-chevron-left scaleX-n1-rtl me-1"></i> Trở lại trang
+								đăng nhập
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Core JS -->
+	<script src="/assets/vendor/libs/jquery/jquery.js"></script>
+	<script src="/assets/vendor/libs/popper/popper.js"></script>
+	<script src="/assets/vendor/js/bootstrap.js"></script>
+	<script
+		src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+	<script src="/assets/vendor/js/menu.js"></script>
+	<script src="/assets/js/main.js"></script>
 </body>
 
 </html>

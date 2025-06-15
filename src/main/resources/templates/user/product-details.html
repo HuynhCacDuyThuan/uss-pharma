@@ -1,124 +1,178 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chi tiết sản phẩm</title>
+<title th:text="${product.title}"></title>
+<meta name="description" th:content="${product.descriptionSeo}" />
+<meta name="keywords"
+	th:content="${product.title != null} ? ${product.title} : ${product.name}" />
+<link rel="canonical" th:href="@{${product.url}}" />
+<meta property="og:locale" content="vi_VN" />
+<meta property="og:type" content="product" />
+<meta property="og:title" th:content="${product.title}" />
+<meta property="og:description" th:content="${product.descriptionSeo}" />
+<meta property="og:url" th:content="${product.url}" />
+<meta property="og:site_name"
+	content="Công ty TNHH Dược Phẩm Quốc tế USS" />
+<meta property="og:image" th:content="${product.imageUrl}" />
+<meta property="og:image:secure_url" th:content="${product.imageUrl}" />
+<meta property="og:image:width" content="1301" />
+<meta property="og:image:height" content="1487">
+<meta property="product:price:currency" content="VND">
+<meta property="product:availability" content="instock">
+<meta property="product:brand" th:content="${product.brand}" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" th:content="${product.title}" />
+<meta property="og:image:alt" th:content="${product.productCode}" />
+<meta name="twitter:description" th:content="${product.descriptionSeo}" />
+<meta name="twitter:image" th:content="${product.imageUrl}" />
+<meta name="twitter:label1" content="Giá" />
+<meta name="twitter:data1" content="0&nbsp;₫" />
+<meta name="twitter:label2" content="Tình trạng sẵn có">
+<meta name="twitter:data2" content="Còn hàng">
 
 <link th:href="@{/css/index.css}" rel="stylesheet">
 <link th:href="@{/css/catergory.css}" rel="stylesheet">
 <link th:href="@{/css/footer.css}" rel="stylesheet">
 <link th:href="@{/css/product.css}" rel="stylesheet">
+
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 	rel="stylesheet">
-	  <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css}">
+<link rel="stylesheet"
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css}">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-	
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 <style>
 /* Style for similar products */
 .similar-products {
 	margin-top: 40px;
 }
 
+.category {
+	color: #003087 !important;
+}
+
+.product-code {
+	color: #003087 !important;
+}
+
 ol {
 	list-style-type: disc; /* Makes the list bullet-based */
 	padding-left: 20px; /* Adjust the indentation if needed */
 }
-.w-36{
-width: 36% !important;
+
+.w-36 {
+	width: 36% !important;
 }
+
 .description-title {
 	font-size: 16px;
 	font-weight: bold;
 	color: #28a745; /* Green color */
 	margin-bottom: 8px; /* Space below the title */
 }
+
 .zoom-image {
-    transition: transform 0.3s ease-in-out;
-    cursor: zoom-in;
+	transition: transform 0.3s ease-in-out;
+	cursor: zoom-in;
 }
 
 .zoom-image:hover {
-    transform: scale(1.1);
-    z-index: 2;
+	transform: scale(1.1);
+	z-index: 2;
 }
+
 li[data-list="bullet"] {
 	list-style-type: disc; /* Apply bullet style */
 }
-   .product-scroll-container {
-        display: flex;
-        flex-wrap: nowrap; /* Ensure items stay in one line */
-        overflow-x: auto; /* Allow horizontal scrolling */
-        padding-bottom: 10px; /* Space for scroll */
-    }
+
+.product-scroll-container {
+	display: flex;
+	flex-wrap: nowrap; /* Ensure items stay in one line */
+	overflow-x: auto; /* Allow horizontal scrolling */
+	padding-bottom: 10px; /* Space for scroll */
+}
+
 .product-name {
-    text-decoration: none; /* Remove underline */
-    color: #003087 !important; /* Set a dark color for the link */
-    font-size: 14px; /* Adjust the font size */
-    font-weight: bold; /* Make the font bold */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+	text-decoration: none; /* Remove underline */
+	color: #003087 !important; /* Set a dark color for the link */
+	font-size: 14px; /* Adjust the font size */
+	font-weight: bold; /* Make the font bold */
+	transition: color 0.3s ease, transform 0.3s ease;
+	/* Smooth transition for hover effects */
 }
-.color{
-  color: #003087 !important; /* Set a dark color for the link */
+
+.color {
+	color: #003087 !important; /* Set a dark color for the link */
 }
+
 .product-name:hover {
-    color: #003087 !important; /* Change color on hover */
-    transform: scale(1.05); /* Slightly enlarge the text on hover */
-   
+	color: #003087 !important; /* Change color on hover */
+	transform: scale(1.05); /* Slightly enlarge the text on hover */
 }
-    .product-card {
-        flex: 0 0 21%; /* Each card takes up 21% of the container */
-        margin-right: 10px; /* Space between cards */
-    }
+
+.product-card {
+	flex: 0 0 21%; /* Each card takes up 21% of the container */
+	margin-right: 10px; /* Space between cards */
+}
+
 .similar-product-card h5 {
-    font-size: 1rem; /* Điều chỉnh kích thước chữ nếu cần */
-    text-overflow: ellipsis; /* Thêm dấu ba chấm khi văn bản quá dài */
-    overflow: hidden; /* Ẩn phần văn bản vượt quá */
-    white-space: nowrap; /* Đảm bảo văn bản không bị xuống dòng */
-    width: 100%; /* Đảm bảo h5 chiếm đủ chiều rộng */
-    height: 30px; /* Giới hạn chiều cao của tên sản phẩm */
-    display: block; /* Chuyển h5 thành block để có thể điều chỉnh chiều cao */
-    line-height: 30px; /* Căn chỉnh văn bản cho phù hợp với chiều cao */
-    text-align: center; /* Căn giữa văn bản nếu cần */
+	font-size: 1rem; /* Điều chỉnh kích thước chữ nếu cần */
+	text-overflow: ellipsis; /* Thêm dấu ba chấm khi văn bản quá dài */
+	overflow: hidden; /* Ẩn phần văn bản vượt quá */
+	white-space: nowrap; /* Đảm bảo văn bản không bị xuống dòng */
+	width: 100%; /* Đảm bảo h5 chiếm đủ chiều rộng */
+	height: 30px; /* Giới hạn chiều cao của tên sản phẩm */
+	display: block;
+	/* Chuyển h5 thành block để có thể điều chỉnh chiều cao */
+	line-height: 30px; /* Căn chỉnh văn bản cho phù hợp với chiều cao */
+	text-align: center; /* Căn giữa văn bản nếu cần */
 }
-    .similar-product-card {
-        text-align: center;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
+
+.similar-product-card {
+	text-align: center;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
 .similar-product-card img {
-    width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của container */
-    height: auto; /* Giữ tỷ lệ của ảnh không bị méo */
-    object-fit: cover; /* Đảm bảo ảnh không bị kéo dãn ra ngoài giới hạn của container */
-    max-height: 200px; /* Giới hạn chiều cao của ảnh, có thể điều chỉnh tùy theo nhu cầu */
-    border-radius: 8px; /* Làm tròn góc của ảnh nếu muốn */
+	width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của container */
+	height: auto; /* Giữ tỷ lệ của ảnh không bị méo */
+	object-fit: cover;
+	/* Đảm bảo ảnh không bị kéo dãn ra ngoài giới hạn của container */
+	max-height: 200px;
+	/* Giới hạn chiều cao của ảnh, có thể điều chỉnh tùy theo nhu cầu */
+	border-radius: 8px; /* Làm tròn góc của ảnh nếu muốn */
 }
-   
 
-    /* Add scrolling buttons for automatic scrolling (optional) */
-    .scroll-button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-    }
+/* Add scrolling buttons for automatic scrolling (optional) */
+.scroll-button {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 10;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: none;
+	padding: 10px;
+}
 
-    .scroll-button.left {
-        left: 0;
-    }
+.scroll-button.left {
+	left: 0;
+}
 
-    .scroll-button.right {
-        right: 0;
-    }
+.scroll-button.right {
+	right: 0;
+}
+
 .similar-products h3 {
 	font-size: 1.0rem; /* Larger font size */
 	font-weight: bold; /* Make the text bold */
@@ -138,32 +192,34 @@ li[data-list="bullet"] {
 	padding: 15px;
 	margin-bottom: 20px;
 }
+
 .modal-dialog {
-    max-width: 90vw;
+	max-width: 90vw;
 }
 
 #zoomableContainer {
-    width: 100%;
-    height: 80vh;
-    background-color: #fff;
-    position: relative;
-    overflow: hidden;
+	width: 100%;
+	height: 80vh;
+	background-color: #fff;
+	position: relative;
+	overflow: hidden;
 }
 
 #zoomedImage {
-    max-width: unset;
-    max-height: unset;
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: grab;
-    max-width: 73%;
-    height: 303px;
-    user-select: none;
+	max-width: unset;
+	max-height: unset;
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: grab;
+	max-width: 73%;
+	height: 303px;
+	user-select: none;
 }
+
 .similar-product-card h5 {
 	margin-top: 15px; /* More space above the text */
 	font-size: 1.1rem; /* Slightly larger font size */
@@ -179,7 +235,6 @@ li[data-list="bullet"] {
 .similar-product-card h5:hover {
 	color: #007bff; /* Change color on hover to blue */
 }
-
 
 .similar-product-card h5 {
 	margin-top: 10px;
@@ -348,55 +403,59 @@ li[data-list="bullet"] {
 				<!-- Product Image Section -->
 				<div class="col-md-4">
 					<div class="product-card">
-				<img id="mainProductImage"
-     th:src="@{'/loadImage?imageName=' + ${product.imageUrl}}"
-     alt="Product Image"
-     class="img-fluid"
-     style="max-height: 300px; width: auto; object-fit: contain; cursor: zoom-in;"
-     onclick="openImageModal(this.src)">
+						<img id="mainProductImage" th:src="${product.imageUrl}"
+							th:alt="${product.productCode}" class="img-fluid"
+							style="max-height: 300px; width: auto; object-fit: contain; cursor: zoom-in;"
+							onclick="openImageModal(this.src)" />
 
-
-						<!-- Small Images Section -->
 						<div class="small-images mt-2">
-    <!-- Hiển thị ảnh chính như ảnh nhỏ đầu tiên -->
-    <img onclick="changeMainImage(this)" 
-         th:src="@{'/loadImage?imageName=' + ${product.imageUrl}}" 
-         alt="Product Small" class="img-fluid">
+							<!-- Hiển thị ảnh chính như ảnh nhỏ đầu tiên -->
+							<img onclick="changeMainImage(this)" th:src="${product.imageUrl}"
+								alt="Product Small" class="img-fluid">
 
-    <!-- Loop qua các ảnh phụ -->
-    <th:block th:if="${product.productImageUrls != null and !#lists.isEmpty(product.productImageUrls)}">
-        <th:block th:each="imageUrl : ${product.productImageUrls}">
-            <img onclick="changeMainImage(this)" 
-                 th:src="@{'/loadImage?imageName=' + ${imageUrl}}" 
-                 alt="Product Small" class="img-fluid">
-        </th:block>
-    </th:block>
-</div>
+							<!-- Loop qua các ảnh phụ -->
+							<th:block
+								th:if="${product.productImageUrls != null and !#lists.isEmpty(product.productImageUrls)}">
+								<th:block th:each="imageUrl : ${product.productImageUrls}">
+									<img onclick="changeMainImage(this)"
+										th:src="@{'/loadImage?imageName=' + ${imageUrl}}"
+										alt="Product Small" class="img-fluid">
+								</th:block>
+							</th:block>
+						</div>
 					</div>
 				</div>
 
 				<!-- Product Details Section -->
 				<div class="col-md-8">
-				 <input type="hidden" class="product-id" th:value="${product.id}" />
-					<h2 class="product-name color1" th:text="${product.name}"></h2>
+					<input type="hidden" class="product-id" th:value="${product.id}" />
+					<h1 class="product-name color1" th:text="${product.name}"></h1>
 
-
-					<!-- Price Section -->
 					<div class="price">
-
 						<h6 class="text-danger" th:utext="${product.subDescription}"></h6>
-
-
 					</div>
-
+					<div class="product-code">
+						<p>
+							<strong>Mã sản phẩm:</strong> <span
+								th:text="${product.productCode}"></span>
+						</p>
+					</div>
+					<div class="category">
+						<p>
+							<strong>Danh mục:</strong>
+							<!-- Kiểm tra nếu có danh mục cha -->
+							<span th:text="${product.brand}">Danh mục cha</span>
+						</p>
+					</div>
 					<!-- Product Description Section -->
 					<div class="">
 						<p class="description-title color">Thành phần / Công dụng :</p>
-						<h6 class="text-success p5-10 color"  th:utext="${product.description}"></h6>
+						<h6 class="text-success p5-10 color"
+							th:utext="${product.description}"></h6>
 					</div>
 					<!-- Additional Info Section -->
 					<!-- Action Buttons Section: MUA NGAY, Add to Cart, Quantity Control -->
-				 <!--	<div class="action-buttons mb-4">
+					<!--	<div class="action-buttons mb-4">
 						<div class="quantity-buttons">
     <button class="btn btn-outline-secondary" id="decrease-btn">-</button>
     <input type="number" class="form-control w-36" value="1" min="1" id="quantity-input">
@@ -407,50 +466,87 @@ li[data-list="bullet"] {
 							HÀNG</button>
 					</div>
 				</div>-->
-			</div>
+				</div>
 		</section>
 	</div>
 
 
+	<div class="container my-4">
+		<div class="row align-items-center">
+			<!-- Ảnh sản phẩm -->
+			<div class="col-md-4 text-center">
+				<img th:src="${product.imageUrl}" th:alt="${product.name}"
+					class="img-fluid" style="max-width: 200px;">
+			</div>
 
+			<!-- Thông tin sản phẩm -->
+			<div class="col-md-8">
+				<h5 class="fw-bold text-primary" th:text="${product.name}">Tên
+					sản phẩm</h5>
+				<p th:text="${product.descriptionSeo}">Mô tả SEO</p>
+
+				<ul class="list-unstyled">
+					<li><strong>Mã sản phẩm (SKU):</strong> <span
+						th:text="${product.productCode}">SKU</span></li>
+					<li><strong>Thương hiệu sản phẩm:</strong> <span
+						th:text="${product.brand}">Brand</span></li>
+					<li><strong>Tiền tệ sản phẩm:</strong> <span
+						th:text="${product.currency}">VND</span></li>
+					<li><strong>Giá hợp lệ cho đến khi:</strong> <span
+						th:text="${product.validUntil}">2025-08-30</span></li>
+					<li><strong>Sản phẩm còn hàng:</strong> <span
+						class="text-success">InStock</span></li>
+					<li><strong>Xếp hạng của biên tập viên:</strong> <span
+						class="text-warning fw-bold" th:text="${product.rating}">5</span>
+						<i class="fas fa-star text-warning"
+						th:each="star : ${#numbers.sequence(1, product.rating)}"></i></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div class="container">
-    <div class="similar-products">
-        <h3>Sản phẩm tương tự</h3>
-        <div class="row product-scroll-container">
-            <!-- Loop through similar products -->
-            <th:block th:each="similarProduct : ${similarProducts}">
-                <div class="col-md-3 ">
-                    <div class="similar-product-card">
-                        <!-- Display image of the similar product -->
-                        <img th:src="@{'/loadImage?imageName=' + ${similarProduct.imageUrl}}"
-                             alt="Product Small" class="img-fluid">
-                        <!-- Display the name of the similar product -->
-                                 <a th:href="@{/chi-tiet-san-pham/{id}(id=${similarProduct.id})}" class="product-name" th:text="${similarProduct.name}"></a>
+		<div class="similar-products">
+			<h3>Sản phẩm tương tự</h3>
+			<div class="row product-scroll-container">
+				<!-- Loop through similar products -->
+				<th:block th:each="similarProduct : ${similarProducts}">
+					<div class="col-6 col-sm-4 col-md-3 mb-3">
+						<div class="similar-product-card">
+							<!-- Display image of the similar product -->
+							<img
+								th:src="@{'/loadImage?imageName=' + ${similarProduct.imageUrl}}"
+								alt="Product Small" class="img-fluid">
+							<!-- Display the name of the similar product -->
+							<a
+								th:href="@{/chi-tiet-san-pham/{slug}(slug=${similarProduct.slug})}"
+								class="product-name" th:text="${similarProduct.name}"></a>
+						</div>
+					</div>
+				</th:block>
+			</div>
+		</div>
+	</div>
 
-                    </div>
-                </div>
-            </th:block>
-        </div>
-    </div>
-</div>
-	
+
 	<div class="floating-contact">
 		<!-- Zalo -->
-<div class="chat-toggle contact-icon" onclick="toggleChatBox()">
+		<div class="chat-toggle contact-icon" onclick="toggleChatBox()">
 			<i class="fas fa-comment-dots"></i>
 		</div>
 
 		<!-- Facebook -->
-			<!-- Facebook -->
-		<a href="https://www.facebook.com/profile.php?id=61553924450827" target="_blank"
-			class="contact-icon"> <i class="fab fa-facebook-f"></i>
+		<!-- Facebook -->
+		<a href="https://www.facebook.com/profile.php?id=61553924450827"
+			target="_blank" class="contact-icon"> <i
+			class="fab fa-facebook-f"></i>
 		</a>
 		<!-- TikTok -->
 		<a href="https://www.tiktok.com/@uss.pharmaco" target="_blank"
 			class="contact-icon"> <i class="fab fa-tiktok"></i>
 		</a>
 		<!-- YouTube -->
-		<a href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
+		<a
+			href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
 			target="_blank" class="contact-icon"> <i class="fab fa-youtube"></i>
 		</a>
 
@@ -459,73 +555,84 @@ li[data-list="bullet"] {
 
 
 	<th:block th:replace="~{fragments/footer-user :: footer-user}"></th:block>
-	
-<div id="miniChatBox" class="chat-box">
-    <div class="chat-header">
-        <strong>Hỗ trợ trực tuyến</strong> <span onclick="toggleChatBox()" class="chat-close">&times;</span>
-  
-    </div>
-    <div class="chat-body" id="chatBody">
-        <ul id="chatList">
-            <!-- List of predefined questions -->
-            <li class="chat-question" onclick="showAnswer(this)">Xin chào! Bạn cần hỗ trợ gì?</li>
-            <li class="chat-question" onclick="showAnswer(this)">Liên hệ với chúng tôi</li>
-      <li th:each="msg : ${chatMessages}"
-      th:text="${msg.content}"
-      th:class="${msg.sender.username} == ${username} ? 'chat-message me' : 'chat-message user'">
-  </li>
-</li>
-        </ul>
-    </div>
-   <div class="chat-input">
-    <!-- Check if the user is authenticated -->
-<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
-    <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
-    <button onclick="sendMessage()">Gửi</button>
-</div>
-    
-    <!-- If not authenticated, show the login modal -->
-    <div sec:authorize="!isAuthenticated()">
-      <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
-        <button onclick="showLoginModal()">Gửi</button>
-    </div>
-</div>
-</div>
-	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Vui lòng đăng nhập để chat</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Để gửi tin nhắn, bạn cần đăng nhập trước.
-            </div>
-            <div class="modal-footer">
-             
-                <a href="/login" class="btn btn-primary">Đăng nhập</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="imageZoomModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content bg-transparent border-0">
-      <div class="modal-body p-0 position-relative">
-        <span class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></span>
-        <div id="zoomableContainer" style="overflow: hidden; position: relative;">
-          <img id="zoomedImage" src="" style="max-width: 100%; cursor: grab; position: absolute;" />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.2/dist/sockjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.js"></script>
+
+	<div id="miniChatBox" class="chat-box">
+		<div class="chat-header">
+			<strong>Hỗ trợ trực tuyến</strong> <span onclick="toggleChatBox()"
+				class="chat-close">&times;</span>
+
+		</div>
+		<div class="chat-body" id="chatBody">
+			<ul id="chatList">
+				<!-- List of predefined questions -->
+				<li class="chat-question" onclick="showAnswer(this)">Xin chào!
+					Bạn cần hỗ trợ gì?</li>
+				<li class="chat-question" onclick="showAnswer(this)">Liên hệ
+					với chúng tôi</li>
+				<li th:each="msg : ${chatMessages}" th:text="${msg.content}"
+					th:class="${msg.sender.username} == ${username} ? 'chat-message me' : 'chat-message user'">
+				</li>
+				</li>
+			</ul>
+		</div>
+		<div class="chat-input">
+			<!-- Check if the user is authenticated -->
+			<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+				<input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+				<button onclick="sendMessage()">Gửi</button>
+			</div>
+
+			<!-- If not authenticated, show the login modal -->
+			<div sec:authorize="!isAuthenticated()">
+				<input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+				<button onclick="showLoginModal()">Gửi</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="loginModal" tabindex="-1"
+		aria-labelledby="loginModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginModalLabel">Vui lòng đăng
+						nhập để chat</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Để gửi tin nhắn, bạn cần đăng nhập
+					trước.</div>
+				<div class="modal-footer">
+
+					<a href="/login" class="btn btn-primary">Đăng nhập</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="imageZoomModal" tabindex="-1"
+		aria-hidden="true">
+		<div class="modal-dialog modal-xl modal-dialog-centered">
+			<div class="modal-content bg-transparent border-0">
+				<div class="modal-body p-0 position-relative">
+					<span class="btn-close position-absolute top-0 end-0 m-3"
+						data-bs-dismiss="modal"></span>
+					<div id="zoomableContainer"
+						style="overflow: hidden; position: relative;">
+						<img id="zoomedImage" src=""
+							style="max-width: 100%; cursor: grab; position: absolute;" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.2/dist/sockjs.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-		<script>
+	<script>
     const scrollContainer = document.querySelector('.product-scroll-container');
     let scrollAmount = 0;
 
@@ -620,7 +727,7 @@ li[data-list="bullet"] {
     window.addEventListener('load', updateCartCount);
 </script>
 
-<script>
+	<script>
 	let stompClient = null;
 	let connected = false;  // Track if the WebSocket is connected
 
@@ -748,7 +855,7 @@ function connectWebSocket() {
 	
 
 </script>
-<script>
+	<script>
     function changeMainImage(smallImg) {
         const mainImg = document.getElementById('mainProductImage');
         if (mainImg && smallImg && smallImg.src) {
@@ -756,7 +863,7 @@ function connectWebSocket() {
         }
     }
 </script>
-<script>
+	<script>
 let isDragging = false;
 let dragStart = { x: 0, y: 0 };
 let dragOffset = { x: 0, y: 0 };
@@ -826,6 +933,12 @@ zoomedImage.addEventListener('wheel', (e) => {
     zoomedImage.style.transform = `translate(${dragOffset.x}px, ${dragOffset.y}px) scale(${scale})`;
 });
 </script>
+
+	<script type="application/ld+json" th:inline="javascript"
+		th:utext="${productSchemaJson}">
+ 
+</script>
+
 </body>
 
 </html>

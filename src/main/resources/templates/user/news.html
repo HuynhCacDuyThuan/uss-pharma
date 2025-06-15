@@ -3,11 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tin tức</title>
+<title>TIN TỨC - Công ty TNHH Dược Phẩm Quốc tế USS</title>
+<meta name="robots"
+	content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+<link rel="canonical" th:href="${url}" />
+<meta property="og:locale" content="vi_VN">
+<meta property="og:type" content="article">
+<meta property="og:title"
+	content="TIN TỨC - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta property="og:url" th:content="${url}" />
+<meta property="og:site_name"
+	content="Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta property="og:image" th:content="${logoUrl}" />
+<meta property="og:image:secure_url" th:content="${logoUrl}" />
+<meta property="og:image:width" content="501">
+<meta property="og:image:height" content="323">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TIN TỨC - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta name="twitter:image" th:content="${logoUrl}" />
+<meta name="twitter:label1" content="Bài viết">
+
+
 <meta name="description"
-	content="Tin tức CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+	content="Tin tức -  Công ty TNHH Dược Phẩm Quốc tế USS">
 <meta name="keywords"
-	content="Tin tức CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+	content="Tin tức -  Công ty TNHH Dược Phẩm Quốc tế USS">
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 	rel="stylesheet">
@@ -210,15 +231,17 @@ h5.card-title {
 				<div class="col-md-9  mb-4">
 					<h5 class="custom-heading">Tin tức</h5>
 					<tr th:each="news : ${newsList}">
-				
+
 						<div class="card mb-2">
 							<img th:src="@{'/loadImage?imageName=' + ${news.mainImageUrl}}"
 								class="card-img-top" alt="Firestorm Mode">
 							<div class="card-body p-2">
 								<div class="d-flex flex-column">
 									<h5 class="card-title mb-1">
-										
-										<a class="color" th:href="@{/chi-tiet-bai-viet/{title}(title=${news.title})}" th:text="${news.title}"></a>
+
+										<a class="color"
+											th:href="@{/chi-tiet-bai-viet/{title}(title=${news.title})}"
+											th:text="${news.title}"></a>
 									</h5>
 									<div class="meta-info d-flex align-items-center mb-1">
 										<span class="category me-2"> <a
@@ -233,23 +256,27 @@ h5.card-title {
 							</div>
 						</div>
 					</tr>
-					
-					  <nav class="mt-4 text-center">
-        <ul class="pagination justify-content-center">
-            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
-                <a class="page-link" th:href="@{/tin-tuc(page=${currentPage - 1})}">&laquo;</a>
-            </li>
 
-            <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
-                th:classappend="${i} == ${currentPage} ? 'active'">
-                <a class="page-link" th:href="@{/tin-tuc(page=${i})}" th:text="${i + 1}">1</a>
-            </li>
+					<nav class="mt-4 text-center">
+						<ul class="pagination justify-content-center">
+							<li class="page-item"
+								th:classappend="${currentPage == 0} ? 'disabled'"><a
+								class="page-link" th:href="@{/tin-tuc(page=${currentPage - 1})}">&laquo;</a>
+							</li>
 
-            <li class="page-item" th:classappend="${currentPage + 1 >= totalPages} ? 'disabled'">
-                <a class="page-link" th:href="@{/tin-tuc(page=${currentPage + 1})}">&raquo;</a>
-            </li>
-        </ul>
-    </nav>
+							<li class="page-item"
+								th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+								th:classappend="${i} == ${currentPage} ? 'active'"><a
+								class="page-link" th:href="@{/tin-tuc(page=${i})}"
+								th:text="${i + 1}">1</a></li>
+
+							<li class="page-item"
+								th:classappend="${currentPage + 1 >= totalPages} ? 'disabled'">
+								<a class="page-link"
+								th:href="@{/tin-tuc(page=${currentPage + 1})}">&raquo;</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 				<div class="col-md-3 mb-4">
 					<div class="product-section">
@@ -273,206 +300,222 @@ h5.card-title {
 	</div>
 	<div class="floating-contact">
 		<!-- Zalo -->
-<div class="chat-toggle contact-icon" onclick="toggleChatBox()">
+		<div class="chat-toggle contact-icon" onclick="toggleChatBox()">
 			<i class="fas fa-comment-dots"></i>
 		</div>
 		<!-- Facebook -->
-			<!-- Facebook -->
-		<a href="https://www.facebook.com/profile.php?id=61553924450827" target="_blank"
-			class="contact-icon"> <i class="fab fa-facebook-f"></i>
+		<!-- Facebook -->
+		<a href="https://www.facebook.com/profile.php?id=61553924450827"
+			target="_blank" class="contact-icon"> <i
+			class="fab fa-facebook-f"></i>
 		</a>
 		<!-- TikTok -->
 		<a href="https://www.tiktok.com/@uss.pharmaco" target="_blank"
 			class="contact-icon"> <i class="fab fa-tiktok"></i>
 		</a>
 		<!-- YouTube -->
-		<a href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
+		<a
+			href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
 			target="_blank" class="contact-icon"> <i class="fab fa-youtube"></i>
 		</a>
-		
+
 	</div>
 	<th:block th:replace="~{fragments/footer-user :: footer-user}"></th:block>
 	<div id="miniChatBox" class="chat-box">
-    <div class="chat-header">
-        <strong>Hỗ trợ trực tuyến</strong> <span onclick="toggleChatBox()" class="chat-close">&times;</span>
-  
-    </div>
-    <div class="chat-body" id="chatBody">
-        <ul id="chatList">
-            <!-- List of predefined questions -->
-            <li class="chat-question" onclick="showAnswer(this)">Xin chào! Bạn cần hỗ trợ gì?</li>
-            <li class="chat-question" onclick="showAnswer(this)">Liên hệ với chúng tôi</li>
-      <li th:each="msg : ${chatMessages}"
-      th:text="${msg.content}"
-      th:class="${msg.sender.username} == ${username} ? 'chat-message me' : 'chat-message user'">
-  </li>
-</li>
-        </ul>
-    </div>
-   <div class="chat-input">
-    <!-- Check if the user is authenticated -->
-<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
-    <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
-    <button onclick="sendMessage()">Gửi</button>
-</div>
-    
-    <!-- If not authenticated, show the login modal -->
-    <div sec:authorize="!isAuthenticated()">
-      <input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
-        <button onclick="showLoginModal()">Gửi</button>
-    </div>
-</div>
-</div>
-	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Vui lòng đăng nhập để chat</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Để gửi tin nhắn, bạn cần đăng nhập trước.
-            </div>
-            <div class="modal-footer">
-             
-                <a href="/login" class="btn btn-primary">Đăng nhập</a>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.2/dist/sockjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+		<div class="chat-header">
+			<strong>Hỗ trợ trực tuyến</strong> <span onclick="toggleChatBox()"
+				class="chat-close">&times;</span>
+
+		</div>
+		<div class="chat-body" id="chatBody">
+			<ul id="chatList">
+				<!-- List of predefined questions -->
+				<li class="chat-question" onclick="showAnswer(this)">Xin chào!
+					Bạn cần hỗ trợ gì?</li>
+				<li class="chat-question" onclick="showAnswer(this)">Liên hệ
+					với chúng tôi</li>
+				<li th:each="msg : ${chatMessages}" th:text="${msg.content}"
+					th:class="${msg.sender.username} == ${username} ? 'chat-message me' : 'chat-message user'">
+				</li>
+				</li>
+			</ul>
+		</div>
+		<div class="chat-input">
+			<!-- Check if the user is authenticated -->
+			<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+				<input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+				<button onclick="sendMessage()">Gửi</button>
+			</div>
+
+			<!-- If not authenticated, show the login modal -->
+			<div sec:authorize="!isAuthenticated()">
+				<input type="text" id="chatMessage" placeholder="Nhập tin nhắn..." />
+				<button onclick="showLoginModal()">Gửi</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="loginModal" tabindex="-1"
+		aria-labelledby="loginModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginModalLabel">Vui lòng đăng
+						nhập để chat</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">Để gửi tin nhắn, bạn cần đăng nhập
+					trước.</div>
+				<div class="modal-footer">
+
+					<a href="/login" class="btn btn-primary">Đăng nhập</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.2/dist/sockjs.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
 	<!-- Bootstrap JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-		
-<script>
-	let stompClient = null;
-	let connected = false;  // Track if the WebSocket is connected
 
-	// Connect to WebSocket using SockJS
-	// Connect to WebSocket using SockJS
-function connectWebSocket() {
-    const socket = new SockJS('/ws');  // This should match your server-side "/ws" endpoint
-    stompClient = StompJs.Stomp.over(socket); 
-    stompClient.connect({}, function (frame) {
-        console.log('Connected: ' + frame);
-        connected = true;  // Set the connected flag to true after a successful connection
-        subscribeToMessages();  // Subscribe to receive messages
-    }, function (error) {
-        console.error('Error connecting to WebSocket: ', error);
-        connected = false;  // Set connected flag to false if connection fails
-    });
-}
+	<script>
+		let stompClient = null;
+		let connected = false; // Track if the WebSocket is connected
 
+		// Connect to WebSocket using SockJS
+		// Connect to WebSocket using SockJS
+		function connectWebSocket() {
+			const socket = new SockJS('/ws'); // This should match your server-side "/ws" endpoint
+			stompClient = StompJs.Stomp.over(socket);
+			stompClient.connect({}, function(frame) {
+				console.log('Connected: ' + frame);
+				connected = true; // Set the connected flag to true after a successful connection
+				subscribeToMessages(); // Subscribe to receive messages
+			}, function(error) {
+				console.error('Error connecting to WebSocket: ', error);
+				connected = false; // Set connected flag to false if connection fails
+			});
+		}
 
-	// Send a message using WebSocket
-	function sendMessage() {
-    const messageInput = document.getElementById("chatMessage");
-    const messageContent = messageInput.value.trim();
-    const senderUsername = document.getElementById("loggedInUser").textContent.trim();
-    const receiverUsername = '0928666622'; // hoặc biến receiver nếu là dynamic
+		// Send a message using WebSocket
+		function sendMessage() {
+			const messageInput = document.getElementById("chatMessage");
+			const messageContent = messageInput.value.trim();
+			const senderUsername = document.getElementById("loggedInUser").textContent
+					.trim();
+			const receiverUsername = '0928666622'; // hoặc biến receiver nếu là dynamic
 
-    if (!connected || !messageContent) return;
+			if (!connected || !messageContent)
+				return;
 
-    const chatMessage = {
-        senderUsername: senderUsername,
-        receiverUsername: receiverUsername,
-        content: messageContent
-    };
+			const chatMessage = {
+				senderUsername : senderUsername,
+				receiverUsername : receiverUsername,
+				content : messageContent
+			};
 
-    // ❌ KHÔNG append message tại đây nữa
-    stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
-    messageInput.value = "";
-}
+			// ❌ KHÔNG append message tại đây nữa
+			stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
+			messageInput.value = "";
+		}
 
-	function subscribeToMessages() {
-	    const receiverUsername = '0928666622'; // hoặc dùng biến nếu động
+		function subscribeToMessages() {
+			const receiverUsername = '0928666622'; // hoặc dùng biến nếu động
 
-	    stompClient.subscribe(`/topic/messages/${receiverUsername}`, function (messageOutput) {
-	        const message = JSON.parse(messageOutput.body);
-	        const sender = document.getElementById("loggedInUser").textContent.trim();
-	        const chatList = document.getElementById("chatList");
+			stompClient
+					.subscribe(
+							`/topic/messages/${receiverUsername}`,
+							function(messageOutput) {
+								const message = JSON.parse(messageOutput.body);
+								const sender = document
+										.getElementById("loggedInUser").textContent
+										.trim();
+								const chatList = document
+										.getElementById("chatList");
 
-	        // Tạo thẻ <li> đúng theo format giống Thymeleaf
-	        const li = document.createElement("li");
-	        li.textContent = message.content;
+								// Tạo thẻ <li> đúng theo format giống Thymeleaf
+								const li = document.createElement("li");
+								li.textContent = message.content;
 
-	        // Gán class theo người gửi
-	        if (message.senderUsername === sender) {
-	            li.className = "chat-message me";
-	        } else {
-	            li.className = "chat-message user";
-	        }
+								// Gán class theo người gửi
+								if (message.senderUsername === sender) {
+									li.className = "chat-message me";
+								} else {
+									li.className = "chat-message user";
+								}
 
-	        chatList.appendChild(li);
-	        chatList.scrollTop = chatList.scrollHeight;
-	    });
-	}
+								chatList.appendChild(li);
+								chatList.scrollTop = chatList.scrollHeight;
+							});
+		}
 
-	// Initialize WebSocket connection when the page loads
-	window.onload = function() {
-	    connectWebSocket();
-	    subscribeToMessages();
-	
-	};
+		// Initialize WebSocket connection when the page loads
+		window.onload = function() {
+			connectWebSocket();
+			subscribeToMessages();
 
-	// Show login modal if user is not authenticated
-	function showLoginModal() {
-	    const myModal = new bootstrap.Modal(document.getElementById('loginModal'));
-	    myModal.show();
-	}
+		};
 
-	function toggleChatBox() {
-	    const chatBox = document.getElementById("miniChatBox");
-	    chatBox.style.display = chatBox.style.display === "none" || chatBox.style.display === "" ? "flex" : "none";
-	}
+		// Show login modal if user is not authenticated
+		function showLoginModal() {
+			const myModal = new bootstrap.Modal(document
+					.getElementById('loginModal'));
+			myModal.show();
+		}
 
-	
-	
-	function showAnswer(element) {
-	    const questionText = element.textContent;
-	    let answerText = "";
+		function toggleChatBox() {
+			const chatBox = document.getElementById("miniChatBox");
+			chatBox.style.display = chatBox.style.display === "none"
+					|| chatBox.style.display === "" ? "flex" : "none";
+		}
 
-	    // Define answers to the questions
-	    switch (questionText) {
-	        case "Xin chào! Bạn cần hỗ trợ gì?":
-	            answerText = "Chúng tôi cung cấp các dịch vụ hỗ trợ trực tuyến, vui lòng đăng nhập để nhắn tin trực tuyến.";
-	            break;
-	        case "Giới thiệu sản phẩm của bạn":
-	            answerText = "Đê biết thêm chi tiết cụ thể sản.";
-	            break;
-	        case "Thông tin thanh toán":
-	            answerText = "Chúng tôi chấp nhận thanh toán qua nhiều phương thức, bao gồm thẻ tín dụng và chuyển khoản ngân hàng.";
-	            break;
-	        case "Cách sử dụng website":
-	            answerText = "Bạn có thể tìm kiếm sản phẩm, thêm vào giỏ hàng và thanh toán trực tiếp trên website.";
-	            break;
-	        case "Liên hệ với chúng tôi":
-	            answerText = "Bạn có thể liên hệ qua email usspharmaco3007@gmail.com hoặc gọi số hotline: 092 866 66 22";
-	            break;
-	        default:
-	            answerText = "Xin lỗi, chúng tôi không có câu trả lời cho câu hỏi này.";
-	    }
+		function showAnswer(element) {
+			const questionText = element.textContent;
+			let answerText = "";
 
-	    // Create the answer element
-	    const answer = document.createElement("div");
-	    answer.classList.add("chat-answer");
-	    answer.textContent = answerText;
+			// Define answers to the questions
+			switch (questionText) {
+			case "Xin chào! Bạn cần hỗ trợ gì?":
+				answerText = "Chúng tôi cung cấp các dịch vụ hỗ trợ trực tuyến, vui lòng đăng nhập để nhắn tin trực tuyến.";
+				break;
+			case "Giới thiệu sản phẩm của bạn":
+				answerText = "Đê biết thêm chi tiết cụ thể sản.";
+				break;
+			case "Thông tin thanh toán":
+				answerText = "Chúng tôi chấp nhận thanh toán qua nhiều phương thức, bao gồm thẻ tín dụng và chuyển khoản ngân hàng.";
+				break;
+			case "Cách sử dụng website":
+				answerText = "Bạn có thể tìm kiếm sản phẩm, thêm vào giỏ hàng và thanh toán trực tiếp trên website.";
+				break;
+			case "Liên hệ với chúng tôi":
+				answerText = "Bạn có thể liên hệ qua email usspharmaco3007@gmail.com hoặc gọi số hotline: 092 866 66 22";
+				break;
+			default:
+				answerText = "Xin lỗi, chúng tôi không có câu trả lời cho câu hỏi này.";
+			}
 
-	    // Append the answer at the end of the chat body, not after the question
-	    const chatBody = document.getElementById("chatBody");
-	    chatBody.appendChild(answer);
+			// Create the answer element
+			const answer = document.createElement("div");
+			answer.classList.add("chat-answer");
+			answer.textContent = answerText;
 
-	    // Ensure the new answer is visible
-	    answer.style.display = "block";
+			// Append the answer at the end of the chat body, not after the question
+			const chatBody = document.getElementById("chatBody");
+			chatBody.appendChild(answer);
 
-	    // Scroll the chat body to the bottom
-	    chatBody.scrollTop = chatBody.scrollHeight;
-	}
+			// Ensure the new answer is visible
+			answer.style.display = "block";
 
-	
-
-</script>
+			// Scroll the chat body to the bottom
+			chatBody.scrollTop = chatBody.scrollHeight;
+		}
+	</script>
+	<script type="application/ld+json" th:inline="javascript"
+		th:utext="${schemaJson}">
+  
+  </script>
 </body>
 </html>

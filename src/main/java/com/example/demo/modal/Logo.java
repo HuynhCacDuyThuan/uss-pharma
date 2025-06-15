@@ -17,10 +17,7 @@ public class Logo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-  
-
     @Column(nullable = false)
-    private String imageUrl; // Đường dẫn ảnh logo
+    private String imageUrl; 
 
 }

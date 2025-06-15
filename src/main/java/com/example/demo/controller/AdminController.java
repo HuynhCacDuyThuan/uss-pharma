@@ -62,6 +62,15 @@ public class AdminController {
 	public String getIndex() {
 		return "admin/index";
 	}
+	@GetMapping("/logo")
+	public String getLogo() {
+		return "admin/logo";
+	}
+	
+	@GetMapping("/quan-ly-banner")
+	public String getBanner() {
+		return "admin/banner";
+	}
 
 	@GetMapping("/quan-ly-don-hang")
 	public String getOrder() {
@@ -72,7 +81,7 @@ public class AdminController {
 	public String getChat(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		String username = (userDetails != null) ? userDetails.getUsername() : null;
 		model.addAttribute("username", username);
- model.addAttribute("loggedInUser", username);
+        model.addAttribute("loggedInUser", username);
 		if (username != null) {
 			Optional<User> optionalUser = userRepository.findByUsername(username);
 			optionalUser.ifPresent(user -> model.addAttribute("userId", user.getId()));

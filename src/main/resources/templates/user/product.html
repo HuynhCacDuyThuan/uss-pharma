@@ -3,11 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sản phẩm</title>
+<title>Sản phẩm - Công ty TNHH Dược Phẩm Quốc tế USS</title>
 <meta name="description"
-	content="Sản phẩm CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+	content="Sản phẩm - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta name="robots"
+	content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 <meta name="keywords"
-	content="Sản phẩm CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+	content="Sản phẩm - CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+<link rel="canonical" th:href="@{${url}}" />
+<meta property="og:locale" content="vi_VN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sản phẩm - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta property="og:description" content="Sản phẩm - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta property="og:url" th:content="${url}" />
+<meta property="og:site_name" content="Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta property="og:image" th:content="${logoUrl}">
+<meta property="og:image:secure_url" th:content="${logoUrl}">
+<meta property="og:image:width" content="501">
+<meta property="og:image:height" content="323">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sản phẩm - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta name="twitter:description" content="Sản phẩm - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta name="twitter:image" th:content="${logoUrl}" />
+
+
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 	rel="stylesheet">
@@ -249,15 +269,17 @@
 		</div>
 
 		<!-- Facebook -->
-		<a href="https://www.facebook.com/profile.php?id=61553924450827" target="_blank"
-			class="contact-icon"> <i class="fab fa-facebook-f"></i>
+		<a href="https://www.facebook.com/profile.php?id=61553924450827"
+			target="_blank" class="contact-icon"> <i
+			class="fab fa-facebook-f"></i>
 		</a>
 		<!-- TikTok -->
 		<a href="https://www.tiktok.com/@uss.pharmaco" target="_blank"
 			class="contact-icon"> <i class="fab fa-tiktok"></i>
 		</a>
 		<!-- YouTube -->
-		<a href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
+		<a
+			href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
 			target="_blank" class="contact-icon"> <i class="fab fa-youtube"></i>
 		</a>
 
@@ -273,8 +295,10 @@
 		<div class="chat-body" id="chatBody">
 			<ul id="chatList">
 				<!-- List of predefined questions -->
-				<li class="chat-question" data-question="help" onclick="showAnswer(this)">Xin chào! Bạn cần hỗ trợ gì?</li>
-<li class="chat-question" data-question="contact" onclick="showAnswer(this)">Liên hệ với chúng tôi</li>
+				<li class="chat-question" data-question="help"
+					onclick="showAnswer(this)">Xin chào! Bạn cần hỗ trợ gì?</li>
+				<li class="chat-question" data-question="contact"
+					onclick="showAnswer(this)">Liên hệ với chúng tôi</li>
 				<li th:each="msg : ${chatMessages}" th:text="${msg.content}"
 					th:class="${msg.sender.username} == ${username} ? 'chat-message me' : 'chat-message user'">
 				</li>
@@ -408,7 +432,7 @@ function fetchProducts(url) {
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-2">
               <div class="product-card">
                 <img src="/loadImage?imageName=${product.imageUrl}" alt="${product.name}" class="img-fluid mt-2" style="max-width: 150px; height: auto;">
-                <a class="product-name" href="/chi-tiet-san-pham/${product.id}" class="product-name">${product.name}</a>
+                <a class="product-name" href="/chi-tiet-san-pham/${product.slug}" class="product-name">${product.name}</a>
               </div>
             </div>
           `;
@@ -499,8 +523,6 @@ window.addEventListener('load', function() {
 });
 
 </script>
-
-
 
 	<script>
 	let stompClient = null;
@@ -622,5 +644,8 @@ function connectWebSocket() {
 	
 
 </script>
+	<script type="application/ld+json" th:inline="javascript"
+		th:utext="${schemaJson}"></script>
+
 </body>
 </html>

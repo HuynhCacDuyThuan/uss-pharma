@@ -48,21 +48,28 @@ body {
 	font-size: 1em;
 	padding: 10px;
 }
+
 .list-group-item a {
-  text-decoration: none;   /* Remove the underline */
-    display: block;              /* Make the <a> a block element to control its height */
-    overflow: hidden;            /* Hide the overflowing text */
-    text-overflow: ellipsis;     /* Display ellipsis (...) for overflowing text */
-    white-space: normal;         /* Allow the text to wrap */
-    display: -webkit-box;        /* Use webkit box model for multi-line truncation */
-    -webkit-line-clamp: 2;       /* Limit to 2 lines */
-    -webkit-box-orient: vertical; /* Make sure the box is oriented vertically */
+	text-decoration: none; /* Remove the underline */
+	display: block;
+	/* Make the <a> a block element to control its height */
+	overflow: hidden; /* Hide the overflowing text */
+	text-overflow: ellipsis;
+	/* Display ellipsis (...) for overflowing text */
+	white-space: normal; /* Allow the text to wrap */
+	display: -webkit-box;
+	/* Use webkit box model for multi-line truncation */
+	-webkit-line-clamp: 2; /* Limit to 2 lines */
+	-webkit-box-orient: vertical;
+	/* Make sure the box is oriented vertically */
 }
+
 h4.card-title {
-    font-size: 14px;
-    color: #2b3991;
-    margin-bottom:  10px;
+	font-size: 14px;
+	color: #2b3991;
+	margin-bottom: 10px;
 }
+
 .comment-section button {
 	font-size: 1em;
 	cursor: pointer;
@@ -196,7 +203,8 @@ p.ql-align-center {
 						th:utext="${subtitle.subtitle}"></div>
 
 				</div>
-				<div class="comment-section mt-3 mb-2" th:attr="data-news-id=${news.id}">
+				<div class="comment-section mt-3 mb-2"
+					th:attr="data-news-id=${news.id}">
 					<h5>Bình luận về bài viết</h5>
 
 					<!-- Comment Input Field -->
@@ -205,60 +213,64 @@ p.ql-align-center {
 
 					<!-- Submit Button -->
 					<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
-  <button id="submitComment" class="btn btn-primary">Gửi Bình Luận</button>
-</div>
+						<button id="submitComment" class="btn btn-primary">Gửi
+							Bình Luận</button>
+					</div>
 
-<!-- Nếu chưa đăng nhập -->
-<div sec:authorize="!isAuthenticated()">
-  <button class="btn btn-primary" onclick="showLoginModal()">Gửi Bình Luận</button>
-</div>
+					<!-- Nếu chưa đăng nhập -->
+					<div sec:authorize="!isAuthenticated()">
+						<button class="btn btn-primary" onclick="showLoginModal()">Gửi
+							Bình Luận</button>
+					</div>
 
 					<!-- Display Comments -->
 					<div class="comments-list mt-4">
 						<h6>Các Bình Luận:</h6>
 						<ul id="commentList" class="list-unstyled">
 							<!-- Example of a comment -->
-							
+
 						</ul>
 					</div>
 				</div>
 			</div>
 			<!-- Sidebar -->
-		<div class="col-lg-4 col-md-4 col-sm-12">
-    <div class="main-content">
-        <h4 class="card-title">Tin Tức Liên Quan</h4>
-        <ul class="list-group">
-            <th:block th:each="relatedNews : ${top5News}">
-                <li class="list-group-item d-flex align-items-center">
-                    <!-- Display the image on the left -->
-                    <img th:src="@{'/loadImage?imageName=' + ${relatedNews.mainImageUrl}}" 
-                         th:alt="${relatedNews.title}" class="img-thumbnail mr-3 me-2" style="width: 50px; height: 50px;">
-                    <!-- Display the title of the news -->
-                    <a th:href="@{'/chi-tiet-bai-viet/' + ${relatedNews.title}}" th:text="${relatedNews.title}"></a>
-                </li>
-            </th:block>
-        </ul>
-    </div>
-</div>
+			<div class="col-lg-4 col-md-4 col-sm-12">
+				<div class="main-content">
+					<h4 class="card-title">Tin Tức Liên Quan</h4>
+					<ul class="list-group">
+						<th:block th:each="relatedNews : ${top5News}">
+							<li class="list-group-item d-flex align-items-center">
+								<!-- Display the image on the left --> <img
+								th:src="@{'/loadImage?imageName=' + ${relatedNews.mainImageUrl}}"
+								th:alt="${relatedNews.title}" class="img-thumbnail mr-3 me-2"
+								style="width: 50px; height: 50px;"> <!-- Display the title of the news -->
+								<a th:href="@{'/chi-tiet-bai-viet/' + ${relatedNews.title}}"
+								th:text="${relatedNews.title}"></a>
+							</li>
+						</th:block>
+					</ul>
+				</div>
+			</div>
 
 		</div>
 	</div>
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalLabel">Yêu cầu đăng nhập</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-      </div>
-      <div class="modal-body">
-        Bạn cần đăng nhập để thực hiện hành động này.
-      </div>
-      <div class="modal-footer">
-        <a href="/login" class="btn btn-primary">Đăng nhập</a>
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="modal fade" id="loginModal" tabindex="-1"
+		aria-labelledby="loginModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginModalLabel">Yêu cầu đăng nhập</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Đóng"></button>
+				</div>
+				<div class="modal-body">Bạn cần đăng nhập để thực hiện hành
+					động này.</div>
+				<div class="modal-footer">
+					<a href="/login" class="btn btn-primary">Đăng nhập</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<!-- Footer -->
@@ -270,13 +282,13 @@ p.ql-align-center {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
-		<script>
+	<script>
 function showLoginModal() {
   const modal = new bootstrap.Modal(document.getElementById('loginModal'));
   modal.show();
 }
 </script>
-<script>
+	<script>
 document.addEventListener("DOMContentLoaded", function () {
 	const newsId = document.querySelector(".comment-section").getAttribute("data-news-id");
   const commentInput = document.getElementById("commentInput");

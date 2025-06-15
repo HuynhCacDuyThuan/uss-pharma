@@ -2,11 +2,34 @@
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
+<title>Trang chủ - Công ty TNHH Dược Phẩm Quốc tế USS</title>
 <meta name="description"
-	content="Trang chủ CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+	content="Với hơn 10 năm kinh nghiệm trong lĩnh vực phân phối Dược phẩm, Thực phẩm dinh dưỡng Y tế cao cấp.">
+<meta name="robots"
+	content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 <meta name="keywords"
-	content="Trang chủ CÔNG TY TNHH DƯỢC PHẨM QUỐC TẾ USS">
+	content="Trang chủ - Công ty TNHH Dược Phẩm Quốc tế USS">
+<link rel="canonical" th:href="@{${baseUrl}}" />
+<meta property="og:locale" content="vi_VN">
+<meta property="og:type" content="website">
+<meta property="og:title"
+	content="Trang chủ - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta property="og:description"
+	content="Với hơn 10 năm kinh nghiệm trong lĩnh vực phân phối Dược phẩm, Thực phẩm dinh dưỡng Y tế.">
+<meta property="og:url" th:content="@{${baseUrl}}">
+<meta property="og:site_name"
+	content="Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta property="og:image" th:content="@{${logoUrl}}">
+<meta property="og:image:secure_url" th:content="@{${logoUrl}}">
+<meta property="og:image:width" content="501">
+<meta property="og:image:height" content="323">
+<meta property="og:image:alt" content="Trang chủ">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trang chủ - Công ty TNHH Dược Phẩm Quốc tế USS">
+<meta name="twitter:description" content="Với hơn 10 năm kinh nghiệm trong lĩnh vực phân phối Dược phẩm, Thực phẩm dinh dưỡng Y tế cao cấp.">
+<meta name="twitter:image" th:content="${logoUrl}" />
+
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 	rel="stylesheet">
@@ -26,10 +49,12 @@
 	font-weight: bold; /* Make the text bold */
 	color: #003087 !important;
 }
+
 ul#chatList {
-    margin-left: 0;
-    padding-left: 0;
+	margin-left: 0;
+	padding-left: 0;
 }
+
 .floating-contact {
 	position: fixed;
 	bottom: 20px;
@@ -128,21 +153,15 @@ ul#chatList {
 		<div id="bannerCarousel" class="carousel slide"
 			data-bs-ride="carousel">
 			<div class="banner-overlay"></div>
-			<!-- Overlay for blur and opacity effect -->
+
 			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="/assets/img/uss-img.png" class="d-block w-100"
-						alt="Banner 1">
-				</div>
-				<div class="carousel-item">
-					<img
-						src="https://ctyduocphamquocteuss.com/wp-content/uploads/2025/03/logo-scaled.jpg"
-						class="d-block w-100" alt="Banner 2">
-				</div>
-				<div class="carousel-item">
-					<img src="/assets/img/uss-pharma.png" class="d-block w-100"
-						alt="Banner 3">
-				</div>
+				<th:block th:each="banner, iterStat : ${banners}">
+					<div
+						th:classappend="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+						<img th:src="@{/loadImage(imageName=${banner.imageUrl})}"
+							class="d-block w-100" th:alt="'Banner ' + ${iterStat.index + 1}" />
+					</div>
+				</th:block>
 			</div>
 
 			<!-- Nút điều hướng -->
@@ -164,11 +183,9 @@ ul#chatList {
 					</div>
 					<div class="slider-text">
 						Với hơn 10 năm kinh nghiệm trong lĩnh vực phân phối Dược phẩm,
-						Thực phẩm dinh dưỡng Y tế cao cấp với xuất phát điểm là Hệ thống
-						Nhà thuốc Sài Gòn làm nền tảng hình thành nên USS PHARMA như hiện
-						nay. <br> <br> Ngành nghề kinh doanh: Mua bán thực phẩm
-						chức năng, yến sào và thực phẩm khác; Bán buôn dược phẩm và dụng
-						cụ y tế;
+						Thực phẩm dinh dưỡng Y tế cao cấp. <br> <br> Ngành nghề
+						kinh doanh: Mua bán thực phẩm chức năng, yến sào và thực phẩm
+						khác; Bán buôn dược phẩm và dụng cụ y tế;
 					</div>
 				</div>
 				<div class="slider-image">
@@ -210,16 +227,18 @@ ul#chatList {
 			<i class="fas fa-comment-dots"></i>
 		</div>
 		<!-- Facebook -->
-			<!-- Facebook -->
-		<a href="https://www.facebook.com/profile.php?id=61553924450827" target="_blank"
-			class="contact-icon"> <i class="fab fa-facebook-f"></i>
+		<!-- Facebook -->
+		<a href="https://www.facebook.com/profile.php?id=61553924450827"
+			target="_blank" class="contact-icon"> <i
+			class="fab fa-facebook-f"></i>
 		</a>
 		<!-- TikTok -->
 		<a href="https://www.tiktok.com/@uss.pharmaco" target="_blank"
 			class="contact-icon"> <i class="fab fa-tiktok"></i>
 		</a>
 		<!-- YouTube -->
-		<a href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
+		<a
+			href="https://www.youtube.com/@CONGTYTNHHDUOCPHAMQUOCTEUSS?sttick=0"
 			target="_blank" class="contact-icon"> <i class="fab fa-youtube"></i>
 		</a>
 
@@ -343,7 +362,7 @@ document.querySelectorAll('.tab-item').forEach(tab => {
                     col.innerHTML = `
                         <div class="product-card">
                             <img src="/loadImage?imageName=${product.imageUrl}" alt="${product.name}" class="img-fluid mt-2" style="max-width: 150px;">
-                            <a class="product-name" href="/chi-tiet-san-pham/${product.id}">${product.name}</a>
+                            <a class="product-name" href="/chi-tiet-san-pham/${product.slug}">${product.name}</a>
                             ${discountHTML}
                         </div>
                     `;
@@ -477,6 +496,10 @@ function connectWebSocket() {
 	}
 
 	
+
+</script>
+	<script type="application/ld+json" th:inline="javascript"
+		th:utext="${schemaJson}">
 
 </script>
 </body>

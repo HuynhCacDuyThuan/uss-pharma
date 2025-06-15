@@ -1,18 +1,18 @@
 <!doctype html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	
+
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-<title>Đăng nhập - USS PHARMA</title>
+<title>Đăng nhập - Công ty TNHH Dược Phẩm Quốc tế USS</title>
 
 <meta name="description"
-	content="Đăng nhập - USS PHARMA">
+	content="Trang đăng nhập hệ thống quản lý công ty TNHH Dược Phẩm Quốc tế USS – truy cập tài khoản nhanh chóng, an toàn và bảo mật.">
 <meta name="keywords"
-	content="Đăng nhập - USS PHARMA">
+	content="Đăng nhập - Công ty TNHH Dược Phẩm Quốc tế USS">
 
 <!-- Favicon -->
 <link rel="icon" sizes="32x32" type="image/x-icon"
@@ -30,7 +30,8 @@
 <!-- Core CSS -->
 <!-- build:css assets/vendor/css/theme.css  -->
 <!-- Toastify CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 <!-- Toastify JS -->
 
@@ -55,22 +56,25 @@
 
 <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 <style type="text/css">
- .app-brand-logo1 {
-  display: flex !important;          /* Use Flexbox for easy centering */
-  justify-content: center !important; /* Center horizontally */
-  align-items: center !important;    /* Center vertically */
-  height: 100% !important;           /* Ensure it takes full height of its parent */
+.app-brand-logo1 {
+	display: flex !important; /* Use Flexbox for easy centering */
+	justify-content: center !important; /* Center horizontally */
+	align-items: center !important; /* Center vertically */
+	height: 100% !important;
+	/* Ensure it takes full height of its parent */
 }
+
 .app-brand-text.demo {
-    color: cadetblue !important;
-    margin-left: -31px !important;
-    font-size: 1.75rem;
-    letter-spacing: -0.5px;
+	color: cadetblue !important;
+	margin-left: -31px !important;
+	font-size: 1.75rem;
+	letter-spacing: -0.5px;
 }
+
 .app-brand-logo1 img {
-  display: block;        /* Makes the image a block-level element */
-       /* Keep aspect ratio */
-  max-height: 77px !important;      /* Limit height */
+	display: block; /* Makes the image a block-level element */
+	/* Keep aspect ratio */
+	max-height: 77px !important; /* Limit height */
 }
 </style>
 <script src="/assets/js/config.js"></script>
@@ -87,50 +91,54 @@
 					<div class="card-body">
 						<!-- Logo -->
 						<div class="app-brand justify-content-center">
-							<a href="/" class="app-brand-link gap-2"> <span class="app-brand-logo1 ms-5 demo">
-      <span class="text-primary">
-        <img src="https://ctyduocphamquocteuss.com/wp-content/uploads/2025/03/logo-1024x576.png" alt="Logo">
-      </span>
-    </span>
-							 <span class="app-brand-text demo text-heading fw-bold">USS
+							<a href="/" class="app-brand-link gap-2"> <span
+								class="app-brand-logo1 ms-5 demo"> <span
+									class="text-primary"> 	<img src="/assets/img/logo-1024x576.png"
+										alt="Logo">
+								</span>
+							</span> <span class="app-brand-text demo text-heading fw-bold">USS
 									PHARMA</span>
 							</a>
 						</div>
 						<!-- /Logo -->
-						
 
-					   <form th:action="@{/dang-nhap}" method="POST" id="login-form">
-					   <div th:if="${errorMessage}" class="alert alert-danger mt-3">
-              <span th:text="${errorMessage}"></span>
-            </div>
 
-            <!-- Hiển thị thông báo thành công nếu đăng nhập thành công -->
-            <div th:if="${successMessage}" class="alert alert-success mt-3">
-              <span th:text="${successMessage}"></span>
-            </div>
-            
-                            <div class="mb-6">
-                                <label for="name" class="form-label">Số điện thoại</label>
-                                <input type="number"   th:value="${username}" class="form-control" id="username" name="username" placeholder="Số điện thoại" required autofocus />
-                            </div>
-                            <div class="mb-6">
-                                <label for="password" class="form-label">Mật khẩu</label>
-                                <input type="password"   th:value="${password}"  class="form-control" id="password" name="password" placeholder="Mật khẩu" required />
-                            </div>
+						<form th:action="@{/dang-nhap}" method="POST" id="login-form">
+							<div th:if="${errorMessage}" class="alert alert-danger mt-3">
+								<span th:text="${errorMessage}"></span>
+							</div>
 
-                            <div class="mb-6">
-                                <button type="submit" class="btn btn-primary d-grid w-100">Đăng nhập</button>
-                            </div>
-                            
-                        </form>
-                        <div class="mb-4 text-center">
-    <a href="/quen-mat-khau" class="text-muted small">
-        <i class="bx bx-lock-open-alt me-1"></i> Quên mật khẩu?
-    </a>
-</div>
+							<!-- Hiển thị thông báo thành công nếu đăng nhập thành công -->
+							<div th:if="${successMessage}" class="alert alert-success mt-3">
+								<span th:text="${successMessage}"></span>
+							</div>
+
+							<div class="mb-6">
+								<label for="name" class="form-label">Số điện thoại</label> <input
+									type="number" th:value="${username}" class="form-control"
+									id="username" name="username" placeholder="Số điện thoại"
+									required autofocus />
+							</div>
+							<div class="mb-6">
+								<label for="password" class="form-label">Mật khẩu</label> <input
+									type="password" th:value="${password}" class="form-control"
+									id="password" name="password" placeholder="Mật khẩu" required />
+							</div>
+
+							<div class="mb-6">
+								<button type="submit" class="btn btn-primary d-grid w-100">Đăng
+									nhập</button>
+							</div>
+
+						</form>
+						<div class="mb-4 text-center">
+							<a href="/quen-mat-khau" class="text-muted small"> <i
+								class="bx bx-lock-open-alt me-1"></i> Quên mật khẩu?
+							</a>
+						</div>
 						<p class="text-center">
-							<span>Bạn chưa có tài khoản ?</span> <a
-								href="/dang-ki"> <span>Tạo tài khoản</span>
+							<span>Bạn chưa có tài khoản ?</span> <a href="/dang-ki"> <span>Tạo
+									tài khoản</span>
 							</a>
 						</p>
 					</div>
@@ -165,8 +173,10 @@
 	<script src="/assets/js/main.js"></script>
 
 	<!-- Page JS -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+	<script type="application/ld+json" th:inline="javascript"
+		th:utext="${schemaJson}"></script>
 	<!-- Place this tag before closing body tag for github widget button. -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>

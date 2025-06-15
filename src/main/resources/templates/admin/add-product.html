@@ -235,7 +235,14 @@
 										<h5 class="card-header">Thêm sản phẩm</h5>
 										<div class="card-body">
 										 <form th:action="@{/products/add}" th:object="${product}" method="post" enctype="multipart/form-data">
-    <!-- Product Name & Price -->
+    <div class="row g-3 mb-3">
+    <div class="col-12">
+        <div class="input-group">
+            <span class="input-group-text">Tiêu đề</span>
+            <input type="text" name="title" class="form-control" placeholder="Tiêu đề sản phẩm" required th:value="${product.title}" />
+        </div>
+    </div>
+</div>
     <div class="row g-3 mb-3">
         <div class="col-12 col-md-6">
             <div class="input-group">
@@ -257,7 +264,7 @@
         <div class="col-12 col-md-6">
             <div class="input-group">
                 <span class="input-group-text">Số lượng</span>
-                <input type="number" name="quantity" class="form-control" placeholder="Số lượng" required th:value="${product.quantity}" />
+                <input type="text" name="quantity" class="form-control" placeholder="Số lượng" required th:value="${product.quantity}" />
             </div>
         </div>
         <div class="col-12 col-md-6">
@@ -290,6 +297,66 @@
             </div>
         </div>
     </div>
+<div class="row g-3 mb-3">
+    <div class="col-12 col-md-6">
+        <div class="input-group">
+            <span class="input-group-text">Mã sản phẩm</span>
+            <input type="text" name="productCode" class="form-control" placeholder="Mã sản phẩm" required th:value="${product.productCode}" />
+        </div>
+    </div>
+</div>
+
+<!-- Thương hiệu sản phẩm -->
+<div class="row g-3 mb-3">
+    <div class="col-12 col-md-6">
+        <div class="input-group">
+            <span class="input-group-text">Thương hiệu</span>
+            <input type="text" name="brand" class="form-control" placeholder="Thương hiệu sản phẩm" th:value="${product.brand}" />
+        </div>
+    </div>
+</div>
+
+<!-- Tiền tệ sản phẩm -->
+<div class="row g-3 mb-3">
+    <div class="col-12 col-md-6">
+        <div class="input-group">
+            <span class="input-group-text">Tiền tệ</span>
+            <input type="text" name="currency" class="form-control" placeholder="Tiền tệ" th:value="${product.currency}" readonly />
+        </div>
+    </div>
+</div>
+
+<!-- Giá hợp lệ đến ngày -->
+<div class="row g-3 mb-3">
+    <div class="col-12 col-md-6">
+        <div class="input-group">
+            <span class="input-group-text">Giá hợp lệ đến</span>
+            <input type="date" name="validUntil" class="form-control" placeholder="Giá hợp lệ đến ngày" th:value="${product.validUntil}" />
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-12 col-md-6">
+        <label for="rating" class="form-label">Xếp hạng</label>
+        <select class="form-control" name="rating" required>
+            <option value="1">1 sao</option>
+            <option value="2">2 sao</option>
+            <option value="3">3 sao</option>
+            <option value="4">4 sao</option>
+            <option value="5">5 sao</option>
+        </select>
+    </div>
+</div>
+<div class="row g-3 mb-3">
+    <div class="col-12 col-md-6">
+        <div class="input-group">
+            <span class="input-group-text">Link tĩnh</span>
+            <input type="text" name="slug" class="form-control" placeholder="Link tĩnh (slug)" required th:value="${product.slug}" />
+
+        </div>
+    </div>
+</div>
 
     <!-- Image Upload -->
     <div class="row g-3 mb-3">
@@ -318,6 +385,8 @@
     <div id="quill-editor-additional" class="quill-editor"></div>
    <textarea th:value="${product.subDescription}" name="subDescription"  style="display: none;"></textarea>
 </div>
+
+
     <!-- Submit Button -->
     <div class="text-end mt-4">
         <button type="submit" class="btn btn-primary">
